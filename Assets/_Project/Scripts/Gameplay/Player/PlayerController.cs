@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [Header("Crouch")]
     [SerializeField] private float crouchSpeed = 2f;
+    [SerializeField] private float colliderTransitionSpeed = 8f;
     [SerializeField] private Vector2 crouchColliderSize = new(0.75f, 0.3f);
     [SerializeField] private Vector2 crouchColliderOffset = new(0f, 0.05f);
     [SerializeField] private Vector2 standColliderSize = new(1f, 1f);
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 velocity;
     private bool isCrouched;
     private float currentSpeed;
+    private Vector2 colliderSizeVelocity;
+    private Vector2 colliderOffsetVelocity;
     private bool IsGrounded()
     {
         Vector2 point = new Vector2(transform.position.x, transform.position.y) + groundCheckOffset;
@@ -44,6 +47,11 @@ public class PlayerController : MonoBehaviour
         if (boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
 
         currentSpeed = maxSpeed;
+        if (boxCollider != null)
+        {
+            boxCollider.size = standColliderSize;
+            boxCollider.offset = standColliderOffset;
+        }
         SetCrouching(false);
     }
 
@@ -68,12 +76,17 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.sprite = crouch ? crouchSprite : idleSprite;
 
         currentSpeed = crouch ? crouchSpeed : maxSpeed;
+    }
 
-        if (boxCollider != null)
-        {
-            boxCollider.size = crouch ? crouchColliderSize : standColliderSize;
-            boxCollider.offset = crouch ? crouchColliderOffset : standColliderOffset;
-        }
+    private void Update()
+    {
+        if (boxCollider == null) return;
+
+        Vector2 targetSize = isCrouched ? crouchColliderSize : standColliderSize;
+        Vector2 targetOffset = isCrouched ? crouchColliderOffset : standColliderOffset;
+
+        boxCollider.size = Vector2.SmoothDamp(boxCollider.size, targetSize, ref colliderSizeVelocity, 1f / colliderTransitionSpeed);
+        boxCollider.offset = Vector2.SmoothDamp(boxCollider.offset, targetOffset, ref colliderOffsetVelocity, 1f / colliderTransitionSpeed);
     }
 
     private void FixedUpdate()

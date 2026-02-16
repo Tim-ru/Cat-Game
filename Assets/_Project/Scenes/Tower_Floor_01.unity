@@ -2019,7 +2019,8 @@ MonoBehaviour:
   idleSprite: {fileID: -8902724043504370536, guid: 19e77e035cdb94183b9c3179d2ed67f9, type: 3}
   spriteRenderer: {fileID: 1037292115}
   boxCollider: {fileID: 1037292118}
-  crouchSpeed: 2
+  crouchSpeed: 1.5
+  colliderTransitionSpeed: 6
   crouchColliderSize: {x: 0.65, y: 0.35}
   crouchColliderOffset: {x: 0, y: 0}
   standColliderSize: {x: 0.55, y: 0.55}
