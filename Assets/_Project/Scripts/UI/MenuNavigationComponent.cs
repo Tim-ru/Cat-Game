@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class MenuNavigationComponent : MonoBehaviour
+{
+    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private WindowNavigationComponent[] _windows;
+    private readonly List<int> _windowsIndexesList = new() { 0 };
+    private void Start()
+    {
+        _windows[_windowsIndexesList.Last()].gameObject.SetActive(true);
+    }
+
+    public void ChangeWindow(int windowIndex)
+    {
+        _windows[_windowsIndexesList.Last()].gameObject.SetActive(false);
+        _windows[windowIndex].gameObject.SetActive(true);
+        _windowsIndexesList.Add(windowIndex);
+    }
+    public void Back()
+    {
+        _windows[_windowsIndexesList.Last()].gameObject.SetActive(false);
+        _windowsIndexesList.RemoveAt(_windowsIndexesList.Count - 1);
+        if (_windowsIndexesList.Count != 0)
+        {
+            _windows[_windowsIndexesList.Last()].gameObject.SetActive(true);
+        }
+        else
+        {
+            _playerInput.SwitchCurrentActionMap("Gameplay");
+            gameObject.SetActive(false);
+        }
+    }
+}
