@@ -3125,8 +3125,7 @@ Transform:
   m_LocalPosition: {x: -3.3, y: 0.01, z: 0}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2022546605}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1037292117
@@ -6916,7 +6915,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 8
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -10811,11 +10810,11 @@ Transform:
   m_GameObject: {fileID: 2022546602}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 22.87, y: 1.6988175, z: -0}
-  m_LocalScale: {x: 0.5882352, y: 0.58823526, z: 0.5882352}
+  m_LocalPosition: {x: 35.579002, y: 2.8979897, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1037292116}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -10828,3 +10827,4 @@ SceneRoots:
   - {fileID: 1559179488}
   - {fileID: 1587001386}
   - {fileID: 1464113883}
+  - {fileID: 2022546605}
