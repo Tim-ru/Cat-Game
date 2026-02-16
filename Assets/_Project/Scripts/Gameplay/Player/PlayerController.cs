@@ -101,11 +101,14 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovementSpeed()
     {
         bool grounded = IsGrounded();
-        bool isLongRunActive = longRunTimer >= longRunDurationToActivate && grounded && !isCrouched;
+        if (!grounded)
+            return;
 
-        if (isCrouched && grounded)
+        bool isLongRunActive = longRunTimer >= longRunDurationToActivate && !isCrouched;
+
+        if (isCrouched)
             currentSpeed = crouchSpeed;
-        else if (wantsToSprint && grounded)
+        else if (wantsToSprint)
             currentSpeed = maxSpeed * sprintSpeedMultiplier;
         else if (isLongRunActive)
             currentSpeed = maxSpeed * longRunMultiplier;
