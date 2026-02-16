@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 colliderSizeVelocity;
     private Vector2 colliderOffsetVelocity;
 
+    private Animator animator;
+    public int direction;
+    private static readonly int xVelocity = Animator.StringToHash("xVelocity");
+
     private const string GroundTag = "Ground";
     private bool IsGrounded()
     {
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
 
         currentSpeed = maxSpeed;
         if (boxCollider != null)
@@ -69,6 +75,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(Vector2 move)
     {
+        direction = (int)move.x;
+        if (direction != 0) spriteRenderer.flipX = direction < 0;
+        animator.SetFloat(xVelocity, Math.Abs(move.x));
         moveInput = move;
     }
 
@@ -159,7 +168,7 @@ public class PlayerController : MonoBehaviour
         }
 
         float targetVelX = moveInput.x * currentSpeed;
-        Vector2 targetVelocity = new Vector2(targetVelX, rb.linearVelocity.y);
+        Vector2 targetVelocity = new(targetVelX, rb.linearVelocity.y);
 
         // При остановке принудительно обнуляем скорость, чтобы не было микродвижений и лишних перерасчётов физики
         if (Mathf.Abs(targetVelX) < 0.001f && Mathf.Abs(rb.linearVelocity.x) < velocityZeroThreshold)

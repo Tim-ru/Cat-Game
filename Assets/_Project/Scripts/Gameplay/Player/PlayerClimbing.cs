@@ -37,8 +37,9 @@ public class PlayerClimbing : MonoBehaviour
             {
                 if (_climbingCoroutine == null)
                 {
+                    _rd.bodyType = RigidbodyType2D.Kinematic;
                     _rd.linearVelocity = Vector2.zero;
-                    StartCoroutine(StartClimbing(col));
+                    _climbingCoroutine = StartCoroutine(StartClimbing(col.collider.transform.position));
                 }
                 return;
             }
@@ -46,7 +47,7 @@ public class PlayerClimbing : MonoBehaviour
         _isTouching =  false;
     }
 
-    private IEnumerator StartClimbing(RaycastHit2D col)
+    private IEnumerator StartClimbing(Vector2 target)
     {
         var startPos = transform.position;
         int tickCount = (int)(_climbingTime * 1f / Time.fixedDeltaTime);
@@ -54,16 +55,18 @@ public class PlayerClimbing : MonoBehaviour
         float xTicks = tickCount - yTicks;
         for (int i = 0; i <= yTicks; i++)
         {
-            var newYPos = Mathf.Lerp(startPos.y, col.point.y + 1, i / yTicks);
-            transform.position = new Vector2(startPos.x, newYPos);
+            var newYPos = Mathf.Lerp(startPos.y, target.y + 1.025f, i / yTicks);
+            _rd.MovePosition(new Vector2(startPos.x, newYPos));
             yield return new WaitForFixedUpdate();
         }
         for (int i = 0; i <= xTicks; i++)
         {
-            var newXPos = Mathf.Lerp(startPos.x, col.point.x, i / xTicks);
-            transform.position = new Vector2(newXPos, col.point.y + 1);
+            var newXPos = Mathf.Lerp(startPos.x, target.x, i / xTicks);
+            _rd.MovePosition(new Vector2(newXPos, target.y + 1.025f));
             yield return new WaitForFixedUpdate();
         }
+        _rd.bodyType = RigidbodyType2D.Dynamic;
+        _climbingCoroutine = null;
     }
 
     private void OnDrawGizmosSelected()
