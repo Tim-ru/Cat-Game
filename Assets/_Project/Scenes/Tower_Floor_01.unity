@@ -2579,7 +2579,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.10498196, y: -0.048116736}
+  m_Offset: {x: 0.1, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2589,7 +2589,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7199639, y: 0.47371835}
+  m_Size: {x: 0.82, y: 0.59}
   m_EdgeRadius: 0
 --- !u!114 &1037292119
 MonoBehaviour:
@@ -2613,12 +2613,6 @@ MonoBehaviour:
   idleSprite: {fileID: -8902724043504370536, guid: 19e77e035cdb94183b9c3179d2ed67f9, type: 3}
   spriteRenderer: {fileID: 1037292115}
   boxCollider: {fileID: 1037292118}
-  crouchSpeed: 2
-  colliderTransitionSpeed: 4
-  crouchColliderSize: {x: 0.75, y: 0.3}
-  crouchColliderOffset: {x: 0, y: 0.05}
-  standColliderSize: {x: 1, y: 1}
-  standColliderOffset: {x: 0, y: 0}
 --- !u!114 &1037292120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,7 +3098,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4372,7 +4366,7 @@ Transform:
   m_GameObject: {fileID: 1559179487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.31854, y: -0.51365, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5352,6 +5346,6 @@ SceneRoots:
   - {fileID: 2008404777}
   - {fileID: 1037292116}
   - {fileID: 295637525}
+  - {fileID: 1559179488}
   - {fileID: 1587001386}
   - {fileID: 1464113883}
-  - {fileID: 1559179488}
