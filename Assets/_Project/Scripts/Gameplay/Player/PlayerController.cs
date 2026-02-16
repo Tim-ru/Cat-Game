@@ -136,6 +136,11 @@ public class PlayerController : MonoBehaviour
             ApplyMovementSpeed();
     }
 
+    public void OnInteract()
+    {
+        Debug.Log("Interact");
+    }
+
     private void FixedUpdate()
     {
         bool grounded = IsGrounded();

@@ -60,4 +60,12 @@ public class PlayerInputHandler : MonoBehaviour
             _canvas.SetActive(true);
         }
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            playerController.OnInteract();
+        }
+    }
 }
