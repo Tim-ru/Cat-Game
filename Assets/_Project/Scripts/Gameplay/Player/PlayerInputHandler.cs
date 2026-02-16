@@ -22,4 +22,14 @@ public class PlayerInputHandler : MonoBehaviour
             playerController.OnJump();
         }
     }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (playerController == null) return;
+
+        if (context.canceled)
+            playerController.SetCrouching(false);
+        else if (context.started || context.performed)
+            playerController.SetCrouching(true);
+    }
 }

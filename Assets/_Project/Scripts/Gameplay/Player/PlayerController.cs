@@ -8,11 +8,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private Vector2 groundCheckOffset = new(0f, -0.5f);
+    [SerializeField] private Sprite crouchSprite;
+    [SerializeField] private Sprite idleSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private BoxCollider2D boxCollider;
+    [Header("Crouch")]
+    [SerializeField] private float crouchSpeed = 2f;
+    [SerializeField] private Vector2 crouchColliderSize = new(0.75f, 0.3f);
+    [SerializeField] private Vector2 crouchColliderOffset = new(0f, 0.05f);
+    [SerializeField] private Vector2 standColliderSize = new(1f, 1f);
+    [SerializeField] private Vector2 standColliderOffset = Vector2.zero;
 
     private const string GroundTag = "Ground";
     private Vector2 moveInput;
     private Vector2 velocity;
-
+    private bool isCrouched;
+    private float currentSpeed;
     private bool IsGrounded()
     {
         Vector2 point = new Vector2(transform.position.x, transform.position.y) + groundCheckOffset;
@@ -29,6 +40,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
+
+        currentSpeed = maxSpeed;
+        SetCrouching(false);
     }
 
     public void OnMove(Vector2 move)
@@ -44,9 +60,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetCrouching(bool crouch)
+    {
+        isCrouched = crouch;
+
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = crouch ? crouchSprite : idleSprite;
+
+        currentSpeed = crouch ? crouchSpeed : maxSpeed;
+
+        if (boxCollider != null)
+        {
+            boxCollider.size = crouch ? crouchColliderSize : standColliderSize;
+            boxCollider.offset = crouch ? crouchColliderOffset : standColliderOffset;
+        }
+    }
+
     private void FixedUpdate()
     {
-        Vector2 targetVelocity = new Vector2(moveInput.x * maxSpeed, rb.linearVelocity.y);
+        Vector2 targetVelocity = new Vector2(moveInput.x * currentSpeed, rb.linearVelocity.y);
         rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime);
     }
 
