@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 473329642}
   m_Layer: 3
   m_Name: Tilemap_Collision
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1175,7 +1175,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1189,7 +1189,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1037292118
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1249,6 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
+  jumpForce: 10
   rb: {fileID: 1037292117}
 --- !u!114 &1037292120
 MonoBehaviour:
