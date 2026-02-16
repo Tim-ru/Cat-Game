@@ -2555,7 +2555,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 360ac9af588ed5d4fac5edc90f50321f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2615,10 +2615,10 @@ MonoBehaviour:
   boxCollider: {fileID: 1037292118}
   crouchSpeed: 2
   colliderTransitionSpeed: 4
-  crouchColliderSize: {x: 0.75, y: 0.3}
+  crouchColliderSize: {x: 0.5, y: 0.3}
   crouchColliderOffset: {x: 0, y: 0.05}
-  standColliderSize: {x: 1, y: 1}
-  standColliderOffset: {x: 0, y: 0}
+  standColliderSize: {x: 0.7199639, y: 0.4737183}
+  standColliderOffset: {x: 0.104982, y: -0.04811674}
 --- !u!114 &1037292120
 MonoBehaviour:
   m_ObjectHideFlags: 0
