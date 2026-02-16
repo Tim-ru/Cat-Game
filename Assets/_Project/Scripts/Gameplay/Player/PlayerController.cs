@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [Header("Crouch")]
     [SerializeField] private float crouchSpeed = 2f;
-    [SerializeField] private float colliderTransitionSpeed = 8f;
+    [SerializeField] private float colliderTransitionSpeed = 4f;
     [SerializeField] private Vector2 crouchColliderSize = new(0.75f, 0.3f);
     [SerializeField] private Vector2 crouchColliderOffset = new(0f, 0.05f);
     [SerializeField] private Vector2 standColliderSize = new(1f, 1f);
@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     public void SetCrouching(bool crouch)
     {
+        if (!IsGrounded()) return;
+
         isCrouched = crouch;
 
         if (spriteRenderer != null)
