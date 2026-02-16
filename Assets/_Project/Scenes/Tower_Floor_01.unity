@@ -2615,10 +2615,10 @@ MonoBehaviour:
   boxCollider: {fileID: 1037292118}
   crouchSpeed: 2
   colliderTransitionSpeed: 4
-  crouchColliderSize: {x: 0.5, y: 0.3}
+  crouchColliderSize: {x: 0.75, y: 0.3}
   crouchColliderOffset: {x: 0, y: 0.05}
-  standColliderSize: {x: 0.7199639, y: 0.4737183}
-  standColliderOffset: {x: 0.104982, y: -0.04811674}
+  standColliderSize: {x: 1, y: 1}
+  standColliderOffset: {x: 0, y: 0}
 --- !u!114 &1037292120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,7 +3104,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 6.75
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

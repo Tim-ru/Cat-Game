@@ -12,13 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sprite idleSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D boxCollider;
+
     [Header("Crouch")]
-    [SerializeField] private float crouchSpeed = 2f;
-    [SerializeField] private float colliderTransitionSpeed = 4f;
-    [SerializeField] private Vector2 crouchColliderSize = new(0.75f, 0.3f);
-    [SerializeField] private Vector2 crouchColliderOffset = new(0f, 0.05f);
-    [SerializeField] private Vector2 standColliderSize = new(1f, 1f);
-    [SerializeField] private Vector2 standColliderOffset = Vector2.zero;
+    private float crouchSpeed = 1.5f;
+    private float colliderTransitionSpeed = 6f;
+    private Vector2 crouchColliderSize = new(0.82f, 0.35f);
+    private Vector2 crouchColliderOffset = Vector2.zero;
+    private Vector2 standColliderSize = new(0.82f, 0.6f);
+    private Vector2 standColliderOffset = Vector2.zero;
 
     private const string GroundTag = "Ground";
     private Vector2 moveInput;
@@ -70,7 +71,8 @@ public class PlayerController : MonoBehaviour
 
     public void SetCrouching(bool crouch)
     {
-        if (!IsGrounded()) return;
+        // Разрешаем присесть только на земле; встать можно в любой момент (по отпусканию клавиши).
+        if (crouch && !IsGrounded()) return;
 
         isCrouched = crouch;
 
