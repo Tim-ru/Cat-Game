@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D boxCollider;
 
-    [Header("Crouch")]
     private float crouchSpeed = 1.5f;
     private float colliderTransitionSpeed = 6f;
     private Vector2 crouchColliderSize = new(0.82f, 0.35f);
@@ -21,13 +20,22 @@ public class PlayerController : MonoBehaviour
     private Vector2 standColliderSize = new(0.82f, 0.6f);
     private Vector2 standColliderOffset = Vector2.zero;
 
-    private const string GroundTag = "Ground";
+    private float sprintSpeedMultiplier = 3f;
+    private float longRunDurationToActivate = 3f;
+    private float longRunMultiplier = 1.4f;
+    private float longRunMinMoveInput = 0.1f;
+
     private Vector2 moveInput;
+    private float longRunTimer;
+    private bool wantsToSprint;
+    private bool wasGrounded;
     private Vector2 velocity;
     private bool isCrouched;
     private float currentSpeed;
     private Vector2 colliderSizeVelocity;
     private Vector2 colliderOffsetVelocity;
+
+    private const string GroundTag = "Ground";
     private bool IsGrounded()
     {
         Vector2 point = new Vector2(transform.position.x, transform.position.y) + groundCheckOffset;
@@ -54,6 +62,7 @@ public class PlayerController : MonoBehaviour
             boxCollider.offset = standColliderOffset;
         }
         SetCrouching(false);
+        wasGrounded = IsGrounded();
     }
 
     public void OnMove(Vector2 move)
@@ -71,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     public void SetCrouching(bool crouch)
     {
-        // Разрешаем присесть только на земле; встать можно в любой момент (по отпусканию клавиши).
         if (crouch && !IsGrounded()) return;
 
         isCrouched = crouch;
@@ -79,24 +87,69 @@ public class PlayerController : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.sprite = crouch ? crouchSprite : idleSprite;
 
-        currentSpeed = crouch ? crouchSpeed : maxSpeed;
+        ApplyMovementSpeed();
+    }
+
+    public void SetSprinting(bool sprint)
+    {
+        wantsToSprint = sprint;
+        ApplyMovementSpeed();
+    }
+
+    private void ApplyMovementSpeed()
+    {
+        bool grounded = IsGrounded();
+        bool isLongRunActive = longRunTimer >= longRunDurationToActivate && grounded && !isCrouched;
+
+        if (isCrouched && grounded)
+            currentSpeed = crouchSpeed;
+        else if (wantsToSprint && grounded)
+            currentSpeed = maxSpeed * sprintSpeedMultiplier;
+        else if (isLongRunActive)
+            currentSpeed = maxSpeed * longRunMultiplier;
+        else
+            currentSpeed = maxSpeed;
     }
 
     private void Update()
     {
-        if (boxCollider == null) return;
+        UpdateLongRunTimer();
+    }
 
-        Vector2 targetSize = isCrouched ? crouchColliderSize : standColliderSize;
-        Vector2 targetOffset = isCrouched ? crouchColliderOffset : standColliderOffset;
+    private void UpdateLongRunTimer()
+    {
+        bool isMoving = Mathf.Abs(moveInput.x) >= longRunMinMoveInput;
+        bool wasLongRunActive = longRunTimer >= longRunDurationToActivate;
 
-        boxCollider.size = Vector2.SmoothDamp(boxCollider.size, targetSize, ref colliderSizeVelocity, 1f / colliderTransitionSpeed);
-        boxCollider.offset = Vector2.SmoothDamp(boxCollider.offset, targetOffset, ref colliderOffsetVelocity, 1f / colliderTransitionSpeed);
+        if (!isCrouched && isMoving)
+            longRunTimer += Time.deltaTime;
+        else
+            longRunTimer = 0f;
+
+        bool isLongRunActive = longRunTimer >= longRunDurationToActivate;
+        if (wasLongRunActive != isLongRunActive)
+            ApplyMovementSpeed();
     }
 
     private void FixedUpdate()
     {
+        bool grounded = IsGrounded();
+        if (!wasGrounded && grounded)
+            ApplyMovementSpeed();
+        wasGrounded = grounded;
+
+        if (boxCollider != null)
+        {
+            Vector2 targetSize = isCrouched ? crouchColliderSize : standColliderSize;
+            Vector2 targetOffset = isCrouched ? crouchColliderOffset : standColliderOffset;
+            float deltaTime = Time.fixedDeltaTime;
+
+            boxCollider.size = Vector2.SmoothDamp(boxCollider.size, targetSize, ref colliderSizeVelocity, 1f / colliderTransitionSpeed, float.PositiveInfinity, deltaTime);
+            boxCollider.offset = Vector2.SmoothDamp(boxCollider.offset, targetOffset, ref colliderOffsetVelocity, 1f / colliderTransitionSpeed, float.PositiveInfinity, deltaTime);
+        }
+
         Vector2 targetVelocity = new Vector2(moveInput.x * currentSpeed, rb.linearVelocity.y);
-        rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime);
+        rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime, float.PositiveInfinity, Time.fixedDeltaTime);
     }
 
     private void OnDrawGizmosSelected()

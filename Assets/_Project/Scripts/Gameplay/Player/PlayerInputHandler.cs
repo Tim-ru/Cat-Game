@@ -41,6 +41,17 @@ public class PlayerInputHandler : MonoBehaviour
         else if (context.started || context.performed)
             playerController.SetCrouching(true);
     }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (playerController == null) return;
+
+        if (context.canceled)
+            playerController.SetSprinting(false);
+        else if (context.started || context.performed)
+            playerController.SetSprinting(true);
+
+    }
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started)
