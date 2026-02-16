@@ -16,4 +16,12 @@ public class PlayerInputHandler : MonoBehaviour
             playerController.OnMove(move);
         }
     }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (playerController != null)
+        {
+            playerController.OnJump();
+        }
+    }
 }

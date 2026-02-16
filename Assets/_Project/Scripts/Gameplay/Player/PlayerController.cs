@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class PlayerController : MonoBehaviour
     public void OnMove(Vector2 move)
     {
         moveInput = move;
+
+        Debug.Log("onmove enabled");
+    }
+    public void OnJump()
+    {
+        Debug.Log("OnJump Call");
     }
 
     void FixedUpdate()
