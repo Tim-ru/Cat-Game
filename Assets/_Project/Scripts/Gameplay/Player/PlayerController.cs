@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float smoothTime = 0.15f;
+    [Tooltip("При скорости ниже этого порога и нулевом вводе — скорость обнуляется (избегаем дрифта и лишней физики).")]
+    [SerializeField] private float velocityZeroThreshold = 0.01f;
     [SerializeField] private float jumpForce = 13f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float groundCheckRadius = 0.2f;
@@ -148,8 +150,19 @@ public class PlayerController : MonoBehaviour
             boxCollider.offset = Vector2.SmoothDamp(boxCollider.offset, targetOffset, ref colliderOffsetVelocity, 1f / colliderTransitionSpeed, float.PositiveInfinity, deltaTime);
         }
 
-        Vector2 targetVelocity = new Vector2(moveInput.x * currentSpeed, rb.linearVelocity.y);
-        rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime, float.PositiveInfinity, Time.fixedDeltaTime);
+        float targetVelX = moveInput.x * currentSpeed;
+        Vector2 targetVelocity = new Vector2(targetVelX, rb.linearVelocity.y);
+
+        // При остановке принудительно обнуляем скорость, чтобы не было микродвижений и лишних перерасчётов физики
+        if (Mathf.Abs(targetVelX) < 0.001f && Mathf.Abs(rb.linearVelocity.x) < velocityZeroThreshold)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            velocity.x = 0f;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime, float.PositiveInfinity, Time.fixedDeltaTime);
+        }
     }
 
     private void OnDrawGizmosSelected()
