@@ -112,7 +112,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "c24e966c-9b98-4a86-b56a-5510ed68147d",
+                    "id": "bcedb598-e568-48be-917a-156a2d90f6f1",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -122,8 +122,30 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "up",
+                    "id": "403f90c2-389f-49d9-97a3-9513873a87f7",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "bff3795f-43b4-4859-ab7c-ee5f27f30ebd",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "left",
-                    "id": "c5db996d-a35e-469d-b6b9-0321cee7497b",
+                    "id": "f15462f3-875f-41ac-8adf-b8b126973bb5",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -134,7 +156,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "c6d9786f-4dfd-42a1-8dbc-d5276b384608",
+                    "id": "9f7f993f-5ce8-4e81-8979-88ae3f3e6f88",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
