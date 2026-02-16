@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float smoothTime = 0.15f;
     [SerializeField] private float jumpForce = 13f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float groundCheckRadius = 0.2f;
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private const string GroundTag = "Ground";
     private Vector2 moveInput;
+    private Vector2 velocity;
 
     private bool IsGrounded()
     {
@@ -44,7 +46,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        Vector2 targetVelocity = new Vector2(moveInput.x * maxSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime);
     }
 
     private void OnDrawGizmosSelected()
