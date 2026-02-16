@@ -8,11 +8,9 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 move = context.ReadValue<Vector2>();
-        Debug.Log($"OnMove called, value: {move}");
 
         if (playerController != null)
         {
-            Debug.Log($"OnMove called, controller is null: {playerController == null}, value: {context.ReadValue<Vector2>()}");
             playerController.OnMove(move);
         }
     }
@@ -23,5 +21,15 @@ public class PlayerInputHandler : MonoBehaviour
         {
             playerController.OnJump();
         }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (playerController == null) return;
+
+        if (context.canceled)
+            playerController.SetCrouching(false);
+        else if (context.started || context.performed)
+            playerController.SetCrouching(true);
     }
 }
