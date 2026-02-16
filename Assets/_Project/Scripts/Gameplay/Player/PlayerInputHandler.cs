@@ -1,9 +1,18 @@
+using System.Runtime.CompilerServices;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private GameObject _canvas;
+    private PlayerInput _playerInput;
+    private void Start()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -31,5 +40,13 @@ public class PlayerInputHandler : MonoBehaviour
             playerController.SetCrouching(false);
         else if (context.started || context.performed)
             playerController.SetCrouching(true);
+    }
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _playerInput.SwitchCurrentActionMap("UI");
+            _canvas.SetActive(true);
+        }
     }
 }

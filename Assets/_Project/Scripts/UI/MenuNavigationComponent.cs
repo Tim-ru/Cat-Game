@@ -8,11 +8,12 @@ using UnityEngine.InputSystem;
 
 public class MenuNavigationComponent : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private WindowNavigationComponent[] _windows;
+    private PlayerInput _playerInput;
     private readonly List<int> _windowsIndexesList = new() { 0 };
     private void Start()
     {
+        _playerInput = FindAnyObjectByType<PlayerInput>();
         _windows[_windowsIndexesList.Last()].gameObject.SetActive(true);
     }
 
@@ -24,14 +25,15 @@ public class MenuNavigationComponent : MonoBehaviour
     }
     public void Back()
     {
-        _windows[_windowsIndexesList.Last()].gameObject.SetActive(false);
-        _windowsIndexesList.RemoveAt(_windowsIndexesList.Count - 1);
-        if (_windowsIndexesList.Count != 0)
+        if (_windowsIndexesList.Count != 1)
         {
+            _windows[_windowsIndexesList.Last()].gameObject.SetActive(false);
+            _windowsIndexesList.RemoveAt(_windowsIndexesList.Count - 1);
             _windows[_windowsIndexesList.Last()].gameObject.SetActive(true);
         }
         else
         {
+            _windows[_windowsIndexesList[0]].ResetHighlight();
             _playerInput.SwitchCurrentActionMap("Gameplay");
             gameObject.SetActive(false);
         }

@@ -2030,9 +2030,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1863282774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 180, y: -175}
   m_SizeDelta: {x: 360, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &851198009
@@ -2065,7 +2065,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2146,6 +2146,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b2d071494374db4c3c2bb38a0ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  _onClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &861116778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2172,7 @@ GameObject:
   - component: {fileID: 861116779}
   - component: {fileID: 861116781}
   - component: {fileID: 861116780}
+  - component: {fileID: 861116782}
   m_Layer: 5
   m_Name: ScreenshakeToggle
   m_TagString: Untagged
@@ -2214,7 +2230,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2283,6 +2299,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861116778}
   m_CullTransparentMesh: 1
+--- !u!114 &861116782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861116778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c78e2e065ae94f46b49b13379703f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuToggle
+  _toggle: {fileID: 1603274350}
 --- !u!1 &949598350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,8 +2603,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d33f0b62011e4a7692e5589984a2822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  maxSpeed: 5
+  smoothTime: 0.15
+  jumpForce: 13
   rb: {fileID: 1037292117}
+  groundCheckRadius: 0.2
+  groundCheckOffset: {x: 0, y: -0.5}
+  crouchSprite: {fileID: -4824538153775291639, guid: 53eec105bed6c41ec939b6c6b5aa6181, type: 3}
+  idleSprite: {fileID: -8902724043504370536, guid: 19e77e035cdb94183b9c3179d2ed67f9, type: 3}
+  spriteRenderer: {fileID: 1037292115}
+  boxCollider: {fileID: 1037292118}
+  crouchSpeed: 2
+  colliderTransitionSpeed: 4
+  crouchColliderSize: {x: 0.75, y: 0.3}
+  crouchColliderOffset: {x: 0, y: 0.05}
+  standColliderSize: {x: 1, y: 1}
+  standColliderOffset: {x: 0, y: 0}
 --- !u!114 &1037292120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,7 +2677,19 @@ MonoBehaviour:
     m_ActionId: 6b9e3d3d-49b6-4679-bbc5-2525767fe093
     m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1037292121}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6b1a57ba-53ff-4624-9b88-f00d95c87c7d
     m_ActionName: 'Gameplay/Crouch[/Keyboard/ctrl]'
   - m_PersistentCalls:
@@ -2650,22 +2705,46 @@ MonoBehaviour:
     m_ActionId: c3d4e5f6-a7b8-9012-cdef-123456789012
     m_ActionName: 'UI/Click[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1464113884}
+        m_TargetAssemblyTypeName: UIInputHandler, Assembly-CSharp
+        m_MethodName: Submit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d4e5f6a7-b8c9-0123-def0-234567890123
     m_ActionName: 'UI/Submit[/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1464113884}
+        m_TargetAssemblyTypeName: UIInputHandler, Assembly-CSharp
+        m_MethodName: Cancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e5f6a7b8-c9d0-1234-ef01-345678901234
     m_ActionName: 'UI/Cancel[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1464113879}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1464113884}
+        m_TargetAssemblyTypeName: UIInputHandler, Assembly-CSharp
+        m_MethodName: Navigation
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2673,6 +2752,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cd3585c0-d4cf-4324-96d7-a7416830bb00
     m_ActionName: 'UI/Move[/Keyboard/w,/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1037292121}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7b81e196-48de-4a4e-8d0e-a844efee6ac2
+    m_ActionName: 'Gameplay/Pause[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Gameplay
@@ -2691,6 +2786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
   playerController: {fileID: 1037292119}
+  _canvas: {fileID: 1464113879}
 --- !u!1 &1040186774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,9 +2909,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1863282774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 180, y: -25}
   m_SizeDelta: {x: 360, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1063395960
@@ -2929,6 +3025,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b2d071494374db4c3c2bb38a0ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  _onClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1464113885}
+        m_TargetAssemblyTypeName: MenuNavigationComponent, Assembly-CSharp
+        m_MethodName: Back
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1089171645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,7 +3360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900184a05fab5b948a86eab9c0e43cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuNavigationComponent
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 1464113884}
   _menuItems:
   - {fileID: 1063395962}
   - {fileID: 1275304711}
@@ -3288,9 +3399,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1863282774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 180, y: -75}
   m_SizeDelta: {x: 360, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275304709
@@ -3323,7 +3434,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3404,6 +3515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b2d071494374db4c3c2bb38a0ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  _onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1328115132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,6 +3529,7 @@ GameObject:
   - component: {fileID: 1328115133}
   - component: {fileID: 1328115135}
   - component: {fileID: 1328115134}
+  - component: {fileID: 1328115136}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -3472,7 +3587,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3541,6 +3656,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328115132}
   m_CullTransparentMesh: 1
+--- !u!114 &1328115136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328115132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882eaca6feb909b449d945561feb4b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuSlider
+  _slider: {fileID: 26646568}
+  _backgroundImage: {fileID: 1128779415}
+  _valueStep: 0.05
 --- !u!1 &1329770389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,9 +3740,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1863282774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 180, y: -125}
   m_SizeDelta: {x: 360, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386419010
@@ -3645,7 +3775,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3726,6 +3856,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9b2d071494374db4c3c2bb38a0ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  _onClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1464113885}
+        m_TargetAssemblyTypeName: MenuNavigationComponent, Assembly-CSharp
+        m_MethodName: ChangeWindow
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1440287087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,13 +3959,14 @@ GameObject:
   - component: {fileID: 1464113881}
   - component: {fileID: 1464113880}
   - component: {fileID: 1464113884}
+  - component: {fileID: 1464113885}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1464113880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3879,7 +4025,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -3918,6 +4064,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad629de38a62bb4ca6a616c146a7bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &1464113885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464113879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0fe077478217b4f9ae6db930b741cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuNavigationComponent
+  _windows:
+  - {fileID: 1239849905}
+  - {fileID: 1481036986}
 --- !u!1 &1481036984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3927,6 +4088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1481036985}
+  - component: {fileID: 1481036986}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -3955,6 +4117,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1481036986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481036984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900184a05fab5b948a86eab9c0e43cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowNavigationComponent
+  _canvas: {fileID: 1464113884}
+  _menuItems:
+  - {fileID: 1612592638}
+  - {fileID: 1328115136}
+  - {fileID: 1920349767}
+  - {fileID: 1746075231}
+  - {fileID: 861116782}
 --- !u!1 &1514832168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4405,6 +4586,7 @@ GameObject:
   - component: {fileID: 1612592635}
   - component: {fileID: 1612592637}
   - component: {fileID: 1612592636}
+  - component: {fileID: 1612592638}
   m_Layer: 5
   m_Name: ControlsButton
   m_TagString: Untagged
@@ -4530,6 +4712,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612592634}
   m_CullTransparentMesh: 1
+--- !u!114 &1612592638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612592634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f9b2d071494374db4c3c2bb38a0ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButton
+  _onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1644377308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4616,6 +4813,7 @@ GameObject:
   - component: {fileID: 1746075228}
   - component: {fileID: 1746075230}
   - component: {fileID: 1746075229}
+  - component: {fileID: 1746075231}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -4673,7 +4871,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4742,6 +4940,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746075227}
   m_CullTransparentMesh: 1
+--- !u!114 &1746075231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746075227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882eaca6feb909b449d945561feb4b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuSlider
+  _slider: {fileID: 264055368}
+  _backgroundImage: {fileID: 1440287089}
+  _valueStep: 0.05
 --- !u!1 &1863282773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,6 +5032,7 @@ GameObject:
   - component: {fileID: 1920349764}
   - component: {fileID: 1920349766}
   - component: {fileID: 1920349765}
+  - component: {fileID: 1920349767}
   m_Layer: 5
   m_Name: MusicSlider
   m_TagString: Untagged
@@ -4876,7 +5090,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4945,6 +5159,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920349763}
   m_CullTransparentMesh: 1
+--- !u!114 &1920349767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920349763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882eaca6feb909b449d945561feb4b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuSlider
+  _slider: {fileID: 1040186776}
+  _backgroundImage: {fileID: 1644377310}
+  _valueStep: 0.05
 --- !u!1 &1979124680
 GameObject:
   m_ObjectHideFlags: 0

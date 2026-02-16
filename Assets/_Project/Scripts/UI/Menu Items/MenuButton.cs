@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MenuButton : MenuItem
 {
+    [SerializeField] private UnityEvent _onClickEvent;
     public override void OnClick()
     {
-        throw new System.NotImplementedException();
+        _onClickEvent?.Invoke();
     }
 
     public override void OnFocused()

@@ -4,11 +4,12 @@ using UnityEngine;
 public abstract class MenuItem : MonoBehaviour
 {
     protected TextMeshProUGUI Text;
-    private void Start()
+    protected void Awake()
     {
         Text = GetComponent<TextMeshProUGUI>();
     }
-    public abstract void OnClick();
+    public virtual void OnClick() { }
     public abstract void OnFocused();
     public abstract void OnUnfocused();
+    public virtual void ChangeValue(float x) { }
 }
