@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float smoothTime = 0.15f;
-    [Tooltip("При скорости ниже этого порога и нулевом вводе — скорость обнуляется (избегаем дрифта и лишней физики).")]
     [SerializeField] private float velocityZeroThreshold = 0.01f;
     [SerializeField] private float jumpForce = 13f;
     [SerializeField] private Rigidbody2D rb;
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public int direction;
     private static readonly int xVelocity = Animator.StringToHash("xVelocity");
 
+    private List<IInteractable> interactables = new List<IInteractable>();
     private const string GroundTag = "Ground";
     private bool IsGrounded()
     {
@@ -130,6 +131,18 @@ public class PlayerController : MonoBehaviour
         UpdateLongRunTimer();
     }
 
+
+    public void AddInteractable(IInteractable interactable)
+    {
+        interactables.Add(interactable);
+    }
+
+    public void RemoveInteractable(IInteractable interactable)
+    {
+        interactables.Remove(interactable);
+    }
+
+
     private void UpdateLongRunTimer()
     {
         bool isMoving = Mathf.Abs(moveInput.x) >= longRunMinMoveInput;
@@ -147,7 +160,28 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract()
     {
-        Debug.Log("Interact (только лог, логики пока нет)");
+        if (interactables.Count > 0 && interactables[0] != null)
+        {
+            float closestDistance = float.MaxValue;
+            IInteractable closestInteractable = null;
+            for (int i = 0; i < interactables.Count; i++)
+            {
+                if (interactables[i] == null) continue;
+
+                float distance = Vector2.Distance(transform.position, interactables[i].Position);
+
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestInteractable = interactables[i];
+                }
+            }
+            if (closestInteractable != null)
+            {
+                closestInteractable.Interact(gameObject);
+                Debug.Log("Interacted with " + closestInteractable.GetType().Name);
+            }
+        }
     }
 
     private void FixedUpdate()
