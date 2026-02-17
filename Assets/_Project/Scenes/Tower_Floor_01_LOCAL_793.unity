@@ -6776,9 +6776,7 @@ MonoBehaviour:
   maxSpeed: 5
   smoothTime: 0.15
   velocityZeroThreshold: 0.01
-  jumpForce: 8
-  airControlMultiplier: 0.65
-  gravityScaleDown: 2.35
+  jumpForce: 13
   rb: {fileID: 1037292117}
   groundCheckRadius: 0.2
   groundCheckOffset: {x: 0, y: -0.5}
@@ -6786,8 +6784,6 @@ MonoBehaviour:
   idleSprite: {fileID: -8902724043504370536, guid: 19e77e035cdb94183b9c3179d2ed67f9, type: 3}
   spriteRenderer: {fileID: 1037292115}
   boxCollider: {fileID: 1037292118}
-  interactionCircleTransform: {fileID: 0}
-  interactionZoneOffset: 0.5
   direction: 0
 --- !u!114 &1037292120
 MonoBehaviour:
