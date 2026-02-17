@@ -26,10 +26,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (playerController != null && context.started)
-        {
-            playerController.OnJump();
-        }
+        if (playerController == null) return;
+
+        if (context.started)
+            playerController.OnJumpPressed();
+        else if (context.canceled)
+            playerController.OnJumpReleased();
     }
 
     public void OnCrouch(InputAction.CallbackContext context)

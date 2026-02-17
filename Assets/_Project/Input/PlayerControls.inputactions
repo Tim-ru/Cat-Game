@@ -108,6 +108,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1623c2fd-3393-420b-b131-1de60ce44bd1",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9bf46229-5d8f-4136-ace7-a8c924f888bc",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
