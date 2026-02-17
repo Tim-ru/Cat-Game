@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float smoothTime = 0.15f;
-    [Tooltip("При скорости ниже этого порога и нулевом вводе — скорость обнуляется (избегаем дрифта и лишней физики).")]
     [SerializeField] private float velocityZeroThreshold = 0.01f;
     [SerializeField] private float jumpForce = 13f;
     [SerializeField] private Rigidbody2D rb;
@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sprite idleSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D boxCollider;
+
+    [SerializeField] private Transform interactionCircleTransform;
+    [SerializeField] private float interactionZoneOffset = 0.5f;
 
     private float crouchSpeed = 1.5f;
     private float colliderTransitionSpeed = 6f;
@@ -42,7 +45,9 @@ public class PlayerController : MonoBehaviour
     public int direction;
     private static readonly int xVelocity = Animator.StringToHash("xVelocity");
 
+    private List<IInteractable> interactables = new List<IInteractable>();
     private const string GroundTag = "Ground";
+
     private bool IsGrounded()
     {
         Vector2 point = new Vector2(transform.position.x, transform.position.y) + groundCheckOffset;
@@ -79,6 +84,15 @@ public class PlayerController : MonoBehaviour
         if (direction != 0) spriteRenderer.flipX = direction < 0;
         animator.SetFloat(xVelocity, Math.Abs(move.x));
         moveInput = move;
+    }
+
+    private int FacingSide
+    {
+        get
+        {
+            return direction != 0
+            ? direction : spriteRenderer != null && spriteRenderer.flipX ? -1 : 1;
+        }
     }
 
     public void OnJump()
@@ -125,10 +139,16 @@ public class PlayerController : MonoBehaviour
             currentSpeed = maxSpeed;
     }
 
-    private void Update()
+    public void AddInteractable(IInteractable interactable)
     {
-        UpdateLongRunTimer();
+        interactables.Add(interactable);
     }
+
+    public void RemoveInteractable(IInteractable interactable)
+    {
+        interactables.Remove(interactable);
+    }
+
 
     private void UpdateLongRunTimer()
     {
@@ -147,8 +167,44 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract()
     {
-        Debug.Log("Interact (только лог, логики пока нет)");
+        if (interactables.Count == 0) return;
+
+        float closestDistance = float.MaxValue;
+        IInteractable closestInteractable = null;
+        for (int i = 0; i < interactables.Count; i++)
+        {
+            if (interactables[i] == null) continue;
+
+            float distance = Vector2.Distance(transform.position, interactables[i].Position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestInteractable = interactables[i];
+            }
+        }
+        if (closestInteractable != null)
+        {
+            closestInteractable.Interact(gameObject);
+            Debug.Log("Interacted with " + closestInteractable.GetType().Name);
+        }
     }
+
+    private void UpdateInteractionZonePosition()
+    {
+        if (interactionCircleTransform == null) return;
+
+        Vector3 localPos = interactionCircleTransform.localPosition;
+        localPos.x = FacingSide * interactionZoneOffset;
+        interactionCircleTransform.localPosition = localPos;
+    }
+
+    private void Update()
+    {
+        UpdateLongRunTimer();
+        UpdateInteractionZonePosition();
+    }
+
 
     private void FixedUpdate()
     {
