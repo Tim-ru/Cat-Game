@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         direction = (int)move.x;
         if (direction != 0) spriteRenderer.flipX = direction < 0;
         animator.SetFloat(xVelocity, Math.Abs(move.x));
+        Debug.Log(move.x);
         moveInput = move;
     }
 

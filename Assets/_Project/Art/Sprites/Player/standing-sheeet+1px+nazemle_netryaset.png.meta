@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6d49c43ff3f68874c9e6bedb4946aefd
+guid: 644ca1fd2bb6f1945b1f24c7e78782ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RUN&JUMP (1)_0
+      name: standing-sheeet+1px+nazemle_netryaset_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 62
-        height: 62
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,21 +125,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 244ac2e35a2e9ef4a95f1048f17abbd0
-      internalID: -1283112886
+      spriteID: c510b4d833e95fa4cb0ab4d473ad5d77
+      internalID: -353916460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_1
+      name: standing-sheeet+1px+nazemle_netryaset_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 51
         y: 0
-        width: 62
-        height: 62
-      alignment: 0
+        width: 50
+        height: 50
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -147,21 +147,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 965aa39983efde84899f3d3d22760de9
-      internalID: 772010111
+      spriteID: 9c3d373eda6490940a5becf35c463b87
+      internalID: -463091843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_2
+      name: standing-sheeet+1px+nazemle_netryaset_2
       rect:
         serializedVersion: 2
-        x: 127
+        x: 102
         y: 0
-        width: 62
-        height: 62
-      alignment: 0
+        width: 50
+        height: 50
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -169,86 +169,86 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2ee3225b994ce54fa22e0ec0d883d92
-      internalID: 1400555538
+      spriteID: a7b2c74f79a48c54cb6ad3f1b14f1a01
+      internalID: -1966986462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_3
+      name: standing-sheeet+1px+nazemle_netryaset_3
       rect:
         serializedVersion: 2
-        x: 190
+        x: 153
         y: 0
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 50
+        height: 50
+      alignment: 9
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b72e3010b4d37a444bc50922d7ba560d
-      internalID: 434853613
+      spriteID: 7254ea641d834974992449eca8a6f34e
+      internalID: 1568684021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_4
+      name: standing-sheeet+1px+nazemle_netryaset_4
       rect:
         serializedVersion: 2
-        x: 253
+        x: 204
         y: 0
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 50
+        height: 50
+      alignment: 9
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be69e03402a6e4b43b19bdcf13b3f317
-      internalID: 349446721
+      spriteID: eb976c223e1723648891025c32fa2acb
+      internalID: -515217578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_5
+      name: standing-sheeet+1px+nazemle_netryaset_5
       rect:
         serializedVersion: 2
-        x: 316
+        x: 255
         y: 0
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 50
+        height: 50
+      alignment: 9
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4aabd752a91d1947af7c898cdffbecb
-      internalID: -1915386223
+      spriteID: 4972b0cda4fd53246a602329c0d8abb1
+      internalID: 993766300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_6
+      name: standing-sheeet+1px+nazemle_netryaset_6
       rect:
         serializedVersion: 2
-        x: 379
+        x: 306
         y: 0
-        width: 62
-        height: 62
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,8 +257,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a95b85c56730f44db264d90106c1e14
-      internalID: 795396673
+      spriteID: c492816f8ea7a13489b84e8cb96671ef
+      internalID: 413436567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: standing-sheeet+1px+nazemle_netryaset_7
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1819e049257f2d84790e7fe273f4bb5f
+      internalID: -844683325
       vertices: []
       indices: 
       edges: []
@@ -267,7 +289,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d48b01150902c22468655a642b096742
+    spriteID: 67a7f61a3cee2434abd5b1f6a485a304
     internalID: 0
     vertices: []
     indices: 
@@ -277,15 +299,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":62.0,"y":62.0},"gridSpriteOffset":{"x":1.0,"y":0.0},"gridSpritePadding":{"x":1.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":50.0,"y":50.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":1.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      RUN&JUMP (1)_0: -1283112886
-      RUN&JUMP (1)_1: 772010111
-      RUN&JUMP (1)_2: 1400555538
-      RUN&JUMP (1)_3: 434853613
-      RUN&JUMP (1)_4: 349446721
-      RUN&JUMP (1)_5: -1915386223
-      RUN&JUMP (1)_6: 795396673
+      standing-sheeet+1px+nazemle_netryaset_0: -353916460
+      standing-sheeet+1px+nazemle_netryaset_1: -463091843
+      standing-sheeet+1px+nazemle_netryaset_2: -1966986462
+      standing-sheeet+1px+nazemle_netryaset_3: 1568684021
+      standing-sheeet+1px+nazemle_netryaset_4: -515217578
+      standing-sheeet+1px+nazemle_netryaset_5: 993766300
+      standing-sheeet+1px+nazemle_netryaset_6: 413436567
+      standing-sheeet+1px+nazemle_netryaset_7: -844683325
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

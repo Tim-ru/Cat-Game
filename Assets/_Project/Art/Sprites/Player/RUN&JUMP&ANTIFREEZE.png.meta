@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6d49c43ff3f68874c9e6bedb4946aefd
+guid: c39c9f8084d411a4db7879a4add09f3b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RUN&JUMP (1)_0
+      name: RUN&JUMP&ANTIFREEZE_0
       rect:
         serializedVersion: 2
         x: 1
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,20 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 244ac2e35a2e9ef4a95f1048f17abbd0
-      internalID: -1283112886
+      spriteID: 4454d41a59a286e49a0eced16581f0d9
+      internalID: 2032381218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_1
+      name: RUN&JUMP&ANTIFREEZE_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 965aa39983efde84899f3d3d22760de9
-      internalID: 772010111
+      spriteID: 8381772b569520142abd79a7c38a4b66
+      internalID: -1446192957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_2
+      name: RUN&JUMP&ANTIFREEZE_2
       rect:
         serializedVersion: 2
-        x: 127
+        x: 129
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2ee3225b994ce54fa22e0ec0d883d92
-      internalID: 1400555538
+      spriteID: e4a0f9217684d6e44a61218f0d1ed00c
+      internalID: -1455069579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_3
+      name: RUN&JUMP&ANTIFREEZE_3
       rect:
         serializedVersion: 2
-        x: 190
+        x: 193
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b72e3010b4d37a444bc50922d7ba560d
-      internalID: 434853613
+      spriteID: 9b569d3c2bd75a2428f40efad48fdcac
+      internalID: -1705214568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_4
+      name: RUN&JUMP&ANTIFREEZE_4
       rect:
         serializedVersion: 2
-        x: 253
+        x: 257
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be69e03402a6e4b43b19bdcf13b3f317
-      internalID: 349446721
+      spriteID: 41d31eabbc2e85c48acf6da943e3891a
+      internalID: -1140665829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_5
+      name: RUN&JUMP&ANTIFREEZE_5
       rect:
         serializedVersion: 2
-        x: 316
+        x: 321
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +235,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4aabd752a91d1947af7c898cdffbecb
-      internalID: -1915386223
+      spriteID: 489ef583ee8914349baba22640095737
+      internalID: -403499861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN&JUMP (1)_6
+      name: RUN&JUMP&ANTIFREEZE_6
       rect:
         serializedVersion: 2
-        x: 379
+        x: 385
         y: 0
-        width: 62
-        height: 62
+        width: 63
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a95b85c56730f44db264d90106c1e14
-      internalID: 795396673
+      spriteID: 8c71896e336cd8f48af4091bd7428b32
+      internalID: 1998193654
       vertices: []
       indices: 
       edges: []
@@ -267,7 +267,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d48b01150902c22468655a642b096742
+    spriteID: 7faa1a7b063d0054aaa73374c9a7ce5e
     internalID: 0
     vertices: []
     indices: 
@@ -277,15 +277,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":62.0,"y":62.0},"gridSpriteOffset":{"x":1.0,"y":0.0},"gridSpritePadding":{"x":1.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":63.0,"y":42.0},"gridSpriteOffset":{"x":1.0,"y":0.0},"gridSpritePadding":{"x":1.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      RUN&JUMP (1)_0: -1283112886
-      RUN&JUMP (1)_1: 772010111
-      RUN&JUMP (1)_2: 1400555538
-      RUN&JUMP (1)_3: 434853613
-      RUN&JUMP (1)_4: 349446721
-      RUN&JUMP (1)_5: -1915386223
-      RUN&JUMP (1)_6: 795396673
+      RUN&JUMP&ANTIFREEZE_0: 2032381218
+      RUN&JUMP&ANTIFREEZE_1: -1446192957
+      RUN&JUMP&ANTIFREEZE_2: -1455069579
+      RUN&JUMP&ANTIFREEZE_3: -1705214568
+      RUN&JUMP&ANTIFREEZE_4: -1140665829
+      RUN&JUMP&ANTIFREEZE_5: -403499861
+      RUN&JUMP&ANTIFREEZE_6: 1998193654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
