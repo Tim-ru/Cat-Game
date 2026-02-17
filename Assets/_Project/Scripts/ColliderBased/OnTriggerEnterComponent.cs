@@ -8,7 +8,7 @@ public class OnTriggerEnterComponent : MonoBehaviour
     [SerializeField] private UnityEvent<GameObject, GameObject> _triggerEvent;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (string.IsNullOrEmpty(_tag))
+        if (!string.IsNullOrEmpty(_tag))
         {
             if (collision.gameObject.CompareTag(_tag))
             {
