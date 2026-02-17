@@ -26,7 +26,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (playerController != null)
+        if (playerController != null && context.started)
         {
             playerController.OnJump();
         }

@@ -7660,7 +7660,9 @@ MonoBehaviour:
   maxSpeed: 5
   smoothTime: 0.15
   velocityZeroThreshold: 0.01
-  jumpForce: 13
+  jumpForce: 8
+  airControlMultiplier: 0.65
+  gravityScaleDown: 2.35
   rb: {fileID: 1037292117}
   groundCheckRadius: 0.2
   groundCheckOffset: {x: 0, y: -0.5}
