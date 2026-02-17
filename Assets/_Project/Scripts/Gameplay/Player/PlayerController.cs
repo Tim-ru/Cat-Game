@@ -225,8 +225,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract()
     {
-        if (interactables.Count == 0) return;
-
         float closestDistance = float.MaxValue;
         IInteractable closestInteractable = null;
         for (int i = 0; i < interactables.Count; i++)
@@ -242,7 +240,9 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (closestInteractable != null)
+        {
             closestInteractable.Interact(gameObject);
+        }
     }
 
     private void UpdateInteractionZonePosition()
