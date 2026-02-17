@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract()
     {
-        Debug.Log("Interact");
+        Debug.Log("Interact (только лог, логики пока нет)");
     }
 
     private void FixedUpdate()
