@@ -11,17 +11,15 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerController>().AddInteractable(this);
-        }
+        var player = other.GetComponentInParent<PlayerController>();
+        if (player != null)
+            player.AddInteractable(this);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerController>().RemoveInteractable(this);
-        }
+        var player = other.GetComponentInParent<PlayerController>();
+        if (player != null)
+            player.RemoveInteractable(this);
     }
 }

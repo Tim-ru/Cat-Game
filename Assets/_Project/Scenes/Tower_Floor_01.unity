@@ -324,7 +324,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1037292116}
@@ -7668,7 +7668,9 @@ MonoBehaviour:
   idleSprite: {fileID: -8902724043504370536, guid: 19e77e035cdb94183b9c3179d2ed67f9, type: 3}
   spriteRenderer: {fileID: 1037292115}
   boxCollider: {fileID: 1037292118}
-  direction: 0
+  interactionCircleTransform: {fileID: 288021059}
+  interactionZoneOffset: 0.5
+  direction: -1
 --- !u!114 &1037292120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8222,7 +8224,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5.4125
+  orthographic size: 7.225
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
