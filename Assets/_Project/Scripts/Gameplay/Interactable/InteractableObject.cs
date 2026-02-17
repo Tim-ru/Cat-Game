@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractableObject : MonoBehaviour, IInteractable
 {
+    [SerializeField] private UnityEvent<GameObject> _event;
     public Vector2 Position => transform.position;
 
     public void Interact(GameObject interactor)
     {
-        Debug.Log("InteractableObject interacted by " + interactor.name);
+        _event?.Invoke(interactor);
     }
 
     void OnTriggerEnter2D(Collider2D other)
