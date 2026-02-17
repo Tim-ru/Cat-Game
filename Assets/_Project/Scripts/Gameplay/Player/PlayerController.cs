@@ -5,11 +5,15 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed = 5f;
-    [SerializeField] private float smoothTime = 0.15f;
+    [SerializeField] private float groundLerpSpeed = 10f;
+    [SerializeField] private float airLerpSpeed = 2f;
     [SerializeField] private float velocityZeroThreshold = 0.01f;
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private float airControlMultiplier = 0.65f;
     [SerializeField] private float gravityScaleDown = 2.35f;
+    [SerializeField] private float chargedJumpMinForce = 4f;
+    [SerializeField] private float chargedJumpMaxForce = 20f;
+    [SerializeField] private float chargedJumpMaxChargeTime = 2f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float groundCheckRadius = 0.2f;
@@ -38,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private float longRunTimer;
     private bool wantsToSprint;
     private bool wasGrounded;
-    private Vector2 velocity;
     private bool isCrouched;
     private float currentSpeed;
     private Vector2 colliderSizeVelocity;
@@ -50,6 +53,15 @@ public class PlayerController : MonoBehaviour
 
     private List<IInteractable> interactables = new List<IInteractable>();
     private const string GroundTag = "Ground";
+    private const float MoveCancelChargeThreshold = 0.01f;
+
+    private float chargeStartTime;
+    private bool isChargingJump;
+
+    private void CancelChargedJump()
+    {
+        isChargingJump = false;
+    }
 
     private bool IsGrounded()
     {
@@ -83,6 +95,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(Vector2 move)
     {
+        if (isChargingJump && Mathf.Abs(move.x) > MoveCancelChargeThreshold)
+            CancelChargedJump();
+
         direction = (int)move.x;
         if (direction != 0) spriteRenderer.flipX = direction < 0;
         animator.SetFloat(xVelocity, Math.Abs(move.x));
@@ -98,17 +113,57 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnJump()
+    public void OnJumpPressed()
     {
-        if (IsGrounded())
+        if (!IsGrounded()) return;
+
+        if (isCrouched)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            StartChargingJump();
         }
+        else
+        {
+            ApplyNormalJump();
+        }
+    }
+
+    public void OnJumpReleased()
+    {
+        if (isChargingJump)
+            DoChargeJump();
+    }
+
+    private void ApplyNormalJump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
+
+    private void StartChargingJump()
+    {
+        chargeStartTime = Time.time;
+        isChargingJump = true;
+    }
+
+    private void DoChargeJump()
+    {
+        if (!isChargingJump) return;
+
+        isChargingJump = false;
+
+        float t = Mathf.Clamp(Time.time - chargeStartTime, 0f, chargedJumpMaxChargeTime);
+        float progress = t / chargedJumpMaxChargeTime;
+        float force = Mathf.Lerp(chargedJumpMinForce, chargedJumpMaxForce, progress);
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, force);
+        SetCrouching(false);
     }
 
     public void SetCrouching(bool crouch)
     {
         if (crouch && !IsGrounded()) return;
+
+        if (!crouch && isChargingJump)
+            CancelChargedJump();
 
         isCrouched = crouch;
 
@@ -187,10 +242,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (closestInteractable != null)
-        {
             closestInteractable.Interact(gameObject);
-            Debug.Log("Interacted with " + closestInteractable.GetType().Name);
-        }
     }
 
     private void UpdateInteractionZonePosition()
@@ -227,17 +279,18 @@ public class PlayerController : MonoBehaviour
         }
 
         float targetVelX = moveInput.x * currentSpeed * (IsGrounded() ? 1f : airControlMultiplier);
-        Vector2 targetVelocity = new(targetVelX, rb.linearVelocity.y);
 
         // При остановке принудительно обнуляем скорость, чтобы не было микродвижений и лишних перерасчётов физики
         if (Mathf.Abs(targetVelX) < 0.001f && Mathf.Abs(rb.linearVelocity.x) < velocityZeroThreshold)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            velocity.x = 0f;
         }
         else
         {
-            rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, smoothTime, float.PositiveInfinity, Time.fixedDeltaTime);
+            float lerpSpeed = IsGrounded() ? groundLerpSpeed : airLerpSpeed;
+            float t = Mathf.Clamp01(lerpSpeed * Time.fixedDeltaTime);
+            float newVelX = Mathf.Lerp(rb.linearVelocity.x, targetVelX, t);
+            rb.linearVelocity = new Vector2(newVelX, rb.linearVelocity.y);
         }
 
         rb.gravityScale = (rb.linearVelocity.y < 0f) ? gravityScaleDown : 1f;
