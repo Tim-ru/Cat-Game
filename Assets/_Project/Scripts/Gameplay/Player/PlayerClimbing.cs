@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerClimbing : MonoBehaviour
 {

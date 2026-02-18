@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
@@ -21,7 +17,7 @@ public class ScreenShake : MonoBehaviour
         _cam = (CinemachineBasicMultiChannelPerlin)camera.GetCinemachineComponent(CinemachineCore.Stage.Noise);
     }
 
-    public void ShakeCamera (float intensity, float timer)
+    public void ShakeCamera(float intensity, float timer)
     {
         _startingIntensity = intensity;
         _cam.AmplitudeGain = intensity;
@@ -38,7 +34,7 @@ public class ScreenShake : MonoBehaviour
     {
         if (!_isShaking) return;
 
-        if (_timer > 0 )
+        if (_timer > 0)
         {
             _cam.AmplitudeGain = Mathf.Lerp(_startingIntensity, 0f, 1 - (_timer / _timerTotal));
             _timer -= Time.deltaTime;
