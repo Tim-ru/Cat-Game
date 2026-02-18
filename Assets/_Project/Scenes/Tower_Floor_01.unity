@@ -994,16 +994,6 @@ Tilemap:
   m_GameObject: {fileID: 473329635}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -20, y: -6, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 13
-      m_TileSpriteIndex: 13
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -20, y: -5, z: 0}
     second:
       serializedVersion: 2
@@ -4772,7 +4762,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: edf4e4295f2b34d9e9566503bac089c6, type: 2}
   - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 19cb985f08a264230b4a6c3747003a86, type: 2}
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: c217cc597190c4517a07c5b0805a5de2, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 2563233b30e2c468e992df59e3d957e1, type: 2}
@@ -4849,7 +4839,7 @@ Tilemap:
     m_Data: {fileID: -480139438, guid: 65a625432120d46188c8dccd8b15b876, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1044094891, guid: 65a625432120d46188c8dccd8b15b876, type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: -587008340, guid: 65a625432120d46188c8dccd8b15b876, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -494850305, guid: 65a625432120d46188c8dccd8b15b876, type: 3}
@@ -4900,7 +4890,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 958580084, guid: 65a625432120d46188c8dccd8b15b876, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 375
+  - m_RefCount: 374
     m_Data:
       e00: 1
       e01: 0
@@ -4973,7 +4963,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 359
+  - m_RefCount: 358
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 0.7080247, g: 0.42011434, b: 0.47216153, a: 1}
@@ -5144,11 +5134,7 @@ CompositeCollider2D:
         Y: -8125000
       - X: -93125000
         Y: -8125000
-    - - X: -190000000
-        Y: -50000000
-      - X: 300000000
-        Y: -50000000
-      - X: 300000000
+    - - X: 300000000
         Y: -20000000
       - X: 870000000
         Y: -20000000
@@ -5452,14 +5438,8 @@ CompositeCollider2D:
         Y: -49062500
       - X: -198124992
         Y: -50000000
-      - X: -198437504
-        Y: -51562500
-      - X: -198437504
-        Y: -59062500
-      - X: -198124992
-        Y: -60000000
-      - X: -190000000
-        Y: -60000000
+      - X: 300000000
+        Y: -50000000
     - - X: 210000000
         Y: -10000000
       - X: 200312496
@@ -5557,9 +5537,7 @@ CompositeCollider2D:
       - {x: -19.8125, y: -0.0000037}
       - {x: -19.812492, y: -0.7187576}
       - {x: -19.718739, y: -0.8125}
-    - - {x: -19.000029, y: -6}
-      - {x: -18.999971, y: -5}
-      - {x: 30, y: -4.999971}
+    - - {x: 29.999971, y: -5}
       - {x: 30.000029, y: -2}
       - {x: 87, y: -1.9999708}
       - {x: 86.99997, y: -1}
@@ -5711,11 +5689,14 @@ CompositeCollider2D:
       - {x: -19.812502, y: -4.0000067}
       - {x: -19.84375, y: -4.156253}
       - {x: -19.843748, y: -4.906254}
-      - {x: -19.812502, y: -5.0000067}
-      - {x: -19.84375, y: -5.156253}
-      - {x: -19.843748, y: -5.906254}
-      - {x: -19.81248, y: -6}
-    - - {x: 17.000063, y: -1.0311882}
+      - {x: -19.81248, y: -5}
+    - - {x: 21.000063, y: -1.0311882}
+      - {x: 20.999971, y: -1}
+      - {x: 20.031242, y: -1.0000076}
+      - {x: 20, y: -1.0311626}
+      - {x: 19.999971, y: -1}
+      - {x: 17.031242, y: -1.0000076}
+      - {x: 17, y: -1.0311626}
       - {x: 16.999971, y: -1}
       - {x: 16.84375, y: -0.9999706}
       - {x: 16.843721, y: 1}
@@ -5732,12 +5713,6 @@ CompositeCollider2D:
       - {x: 24.156252, y: -0.9062538}
       - {x: 24.187458, y: -1}
       - {x: 21.031242, y: -1.0000076}
-      - {x: 21, y: -1.0311626}
-      - {x: 20.999971, y: -1}
-      - {x: 20.031242, y: -1.0000076}
-      - {x: 20, y: -1.0311626}
-      - {x: 19.999971, y: -1}
-      - {x: 17.031242, y: -1.0000076}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -7446,7 +7421,7 @@ Transform:
   m_GameObject: {fileID: 1089171645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.777571, y: 1.7283677, z: -10}
+  m_LocalPosition: {x: -7.777571, y: 1.780002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8420,8 +8395,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -33.65, y: 30}
-      - {x: -33.65, y: 1.74837}
-      - {x: 95.94852, y: 1.74837}
+      - {x: -33.65, y: 1.8}
+      - {x: 95.94852, y: 1.8}
       - {x: 95.94852, y: 30}
   m_UseDelaunayMesh: 0
 --- !u!1 &1464113879
@@ -10229,8 +10204,8 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_RenderMode: 0
+  m_SortingOrder: 3
+  m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -10516,7 +10491,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.06
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14169,7 +14144,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14234,15 +14209,15 @@ ParticleSystem:
     attachRibbonsToTransform: 0
     colorOverLifetime:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 0.078431375}
         key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -14256,17 +14231,17 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
-        atime3: 0
+        atime1: 32768
+        atime2: 65535
+        atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14352,13 +14327,13 @@ ParticleSystem:
         m_RotationOrder: 4
     colorOverTrail:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -14375,14 +14350,14 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 65535
-        atime2: 0
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
