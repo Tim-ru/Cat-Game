@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerClimbing : MonoBehaviour
 {
@@ -9,42 +11,51 @@ public class PlayerClimbing : MonoBehaviour
     [SerializeField] private float _climbingTime = 1f;
     [Range(0, 1f)]
     [SerializeField] private float _heightClimbingTimePercentage = 0.5f;
-    private const string Corner = "Corner";
+    [SerializeField] private float _climbingHeight = 1f;
+    private const string Ground = "Ground";
     private Vector2 _point;
-    public bool _isTouching = false;
     private Coroutine _climbingCoroutine;
-    [SerializeField] int _direction;
     private Rigidbody2D _rd;
+    private PlayerController _playerController;
 
     private void Start()
     {
-        _rd = GetComponent<Rigidbody2D>();   
+        _rd = GetComponent<Rigidbody2D>();
+        _playerController = GetComponent<PlayerController>();
     }
 #if UNITY_EDITOR
     private void OnValidate()
     {
         _point = new Vector2(transform.position.x, transform.position.y) + _cornerCheckOffset;
-        _cornerCheckOffset.x *= _direction;
     }
 #endif
     private void Update()
     {
-        _point = (Vector2)transform.position + _cornerCheckOffset * _direction;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(_point, Vector2.right * _direction, _checkDistance);
+        _point = (Vector2)transform.position;
+        _point.x += _cornerCheckOffset.x * _playerController.direction;
+        _point.y += _cornerCheckOffset.y;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(_point, Vector2.right * _playerController.direction, _checkDistance);
         foreach (RaycastHit2D col in hits)
         {
-            if (col.collider.CompareTag(Corner))
+            if (col.collider.CompareTag(Ground))
             {
-                if (_climbingCoroutine == null)
+                var hitPoint = col.point;
+                hitPoint.x += 0.3f * _playerController.direction;
+                hitPoint.y += _climbingHeight * 1.5f;
+                RaycastHit2D upperObject = Physics2D.Raycast(hitPoint, Vector2.down, 1.5f);
+                var distance = Math.Abs(upperObject.point.y - hitPoint.y);
+                if (distance >= _climbingHeight && _climbingCoroutine == null)
                 {
+                    var nextPos = hitPoint;
+                    nextPos.y -= (distance - _climbingHeight);
+                    nextPos.y -= _climbingHeight / 2;
                     _rd.bodyType = RigidbodyType2D.Kinematic;
                     _rd.linearVelocity = Vector2.zero;
-                    _climbingCoroutine = StartCoroutine(StartClimbing(col.collider.transform.position));
+                    _climbingCoroutine = StartCoroutine(StartClimbing(nextPos));
                 }
                 return;
             }
         }
-        _isTouching =  false;
     }
 
     private IEnumerator StartClimbing(Vector2 target)
@@ -55,14 +66,14 @@ public class PlayerClimbing : MonoBehaviour
         float xTicks = tickCount - yTicks;
         for (int i = 0; i <= yTicks; i++)
         {
-            var newYPos = Mathf.Lerp(startPos.y, target.y + 1.025f, i / yTicks);
+            var newYPos = Mathf.Lerp(startPos.y, target.y, i / yTicks);
             _rd.MovePosition(new Vector2(startPos.x, newYPos));
             yield return new WaitForFixedUpdate();
         }
         for (int i = 0; i <= xTicks; i++)
         {
             var newXPos = Mathf.Lerp(startPos.x, target.x, i / xTicks);
-            _rd.MovePosition(new Vector2(newXPos, target.y + 1.025f));
+            _rd.MovePosition(new Vector2(newXPos, target.y));
             yield return new WaitForFixedUpdate();
         }
         _rd.bodyType = RigidbodyType2D.Dynamic;
@@ -71,7 +82,6 @@ public class PlayerClimbing : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = _isTouching ? Color.green : Color.red;
-        Gizmos.DrawLine(_point, _point + _checkDistance * _direction * Vector2.right);
+        Gizmos.DrawLine(_point, _point + _checkDistance * (Vector2.right * _playerController.direction));
     }
 }
