@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
 
     private List<IInteractable> interactables = new List<IInteractable>();
     private const string GroundTag = "Ground";
-    private const float MoveCancelChargeThreshold = 0.01f;
 
     private float chargeStartTime;
     private bool isChargingJump;
@@ -97,9 +96,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(Vector2 move)
     {
-        if (isChargingJump && Mathf.Abs(move.x) > MoveCancelChargeThreshold)
-            CancelChargedJump();
-
         direction = (int)move.x;
         if (direction != 0) spriteRenderer.flipX = direction < 0;
         animator.SetFloat(xVelocity, Math.Abs(move.x));
@@ -162,15 +158,20 @@ public class PlayerController : MonoBehaviour
 
     public void SetCrouching(bool crouch)
     {
-        if (crouch && !IsGrounded()) return;
-
         if (!crouch && isChargingJump)
             CancelChargedJump();
 
         isCrouched = crouch;
 
         if (spriteRenderer != null)
-            spriteRenderer.sprite = crouch ? crouchSprite : idleSprite;
+        {
+            Sprite newSprite = crouch ? crouchSprite : idleSprite;
+            if (newSprite != null)
+                spriteRenderer.sprite = newSprite;
+#if UNITY_EDITOR
+            Debug.Log($"[Crouch] SetCrouching({crouch}), sprite: {(newSprite != null ? newSprite.name : "NULL")}");
+#endif
+        }
 
         ApplyMovementSpeed();
     }
@@ -260,6 +261,13 @@ public class PlayerController : MonoBehaviour
     {
         UpdateLongRunTimer();
         UpdateInteractionZonePosition();
+    }
+
+    private void LateUpdate()
+    {
+        // Применяем спрайт присеста после Animator, чтобы аниматор его не перезаписывал
+        if (isCrouched && spriteRenderer != null && crouchSprite != null)
+            spriteRenderer.sprite = crouchSprite;
     }
 
 
