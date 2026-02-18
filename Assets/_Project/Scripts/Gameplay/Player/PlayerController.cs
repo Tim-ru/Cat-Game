@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private float longRunMultiplier = 1.4f;
     private float longRunMinMoveInput = 0.1f;
 
+    private float apexThreshold = 0.3f;
+
     private Vector2 moveInput;
     private float longRunTimer;
     private bool wantsToSprint;
@@ -293,7 +295,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(newVelX, rb.linearVelocity.y);
         }
 
-        rb.gravityScale = (rb.linearVelocity.y < 0f) ? gravityScaleDown : 1f;
+        rb.gravityScale = (rb.linearVelocity.y < apexThreshold) ? gravityScaleDown : 1f;
     }
 
     private void OnDrawGizmosSelected()
