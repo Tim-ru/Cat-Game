@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public int direction;
     private static readonly int xVelocity = Animator.StringToHash("xVelocity");
+    private static readonly int yVelocity = Animator.StringToHash("yVelocity");
 
     private List<IInteractable> interactables = new List<IInteractable>();
     private const string GroundTag = "Ground";
@@ -265,6 +266,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetFloat(yVelocity, rb.linearVelocityY);
         bool grounded = IsGrounded();
         if (!wasGrounded && grounded)
             ApplyMovementSpeed();
