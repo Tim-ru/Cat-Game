@@ -1,0 +1,1029 @@
+fileFormatVersion: 2
+guid: 763e13f14674e4af0a032c3d41e8b59d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 248
+        width: 51
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df5e2e4d5cb54da0a0b2203eba2413b
+      internalID: 1593733535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 248
+        width: 50
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db59eb03ff08240d99f72796eedae178
+      internalID: -2130271323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_2
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 248
+        width: 49
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfee805410e9143378ea14afe6ee7ca3
+      internalID: -1475652925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_3
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 248
+        width: 49
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed98b803eda5f4165bf4bfd2dad10776
+      internalID: -528022396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_4
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 248
+        width: 48
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f55370cc9614e12a7c51a128a0d4e6
+      internalID: 309750814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_5
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 248
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b70e6654a4754c30b84982cc81980ec
+      internalID: -1841971081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_6
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 248
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e9210a6a6dc741c78259d867cf2e5c9
+      internalID: 2004311395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_7
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 248
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d5bcd9c39c74d81a6e06db12651178
+      internalID: -315266039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 186
+        width: 45
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55a4ecbd0497c4efd91e4938542b7e24
+      internalID: 206650885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_9
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 186
+        width: 46
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2be9063bc43c4f1d89b0e20d7c58339
+      internalID: -1867317627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_10
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 186
+        width: 53
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4723c9dd56541dbb6c4842bed495ff
+      internalID: -704006359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_11
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 186
+        width: 62
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c7859f820c54780ad1d9fc4adae844
+      internalID: -1903383953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_12
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 186
+        width: 59
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59374a061dad347d98dceca7e6e9767d
+      internalID: 2055323483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_13
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 186
+        width: 50
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 194f05d8162454b9cb892ed0db5c8d53
+      internalID: 1606113997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_14
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 186
+        width: 45
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03e11bfecf174f7fa078a0b590fe883
+      internalID: 1511135188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 52
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500010976594946c5afecd8d22ad7e57
+      internalID: 1332921620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_16
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 124
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990b521f0520b44378c33128c037fa0b
+      internalID: -685418990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_17
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 124
+        width: 52
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c92b9ca1da39c40c6bebb3b67c17e48b
+      internalID: 938465656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_18
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 124
+        width: 51
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37756355cedbc48ec9ef71c53ed7b630
+      internalID: 2058957156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_19
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 124
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1307c93e71654ce0be4d8f9ae6aba05
+      internalID: 2021847416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_20
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 124
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77d22612dcef4cab98be97069dc15fb
+      internalID: -2132461841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_21
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 124
+        width: 51
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41e1776ecb9a472ab0594abdad9bde9
+      internalID: -46193766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_22
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 124
+        width: 52
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0fc2c3500bc4cc18e6312356c75a47
+      internalID: 1244048204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 50
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c8548f22df1f42fca0e5c9d99d99ed5
+      internalID: -1189074724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_24
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 62
+        width: 50
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688f149c053af473ea3f49190e5d7b1c
+      internalID: 1661567848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_25
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 62
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe25959f104642d2b9150d7f97bf8c5
+      internalID: 53012557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_26
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 62
+        width: 47
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ad903251dce247cd84ff1d6a0291b2b
+      internalID: -1933106516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_27
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 62
+        width: 46
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed9f76099fe68426ea0920223866c6a7
+      internalID: 821186810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_28
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 62
+        width: 46
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c400900e46d7456f958a1348b6568e7
+      internalID: -533151385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_29
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 62
+        width: 49
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccc814a55a8484b92a08565fb3f4b9a2
+      internalID: 94712928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_30
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 62
+        width: 49
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97251122c480b4413af7304a5e6b3ec0
+      internalID: 595038363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20ab4d85d7a34cee84cb8b1c3108a62
+      internalID: 711231529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_32
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 0
+        width: 40
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d55c9e13b2a8746948921c0984fe988b
+      internalID: -2110288162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_33
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 0
+        width: 42
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18ad2b5ed19d44c439d745d22908a68a
+      internalID: 2082455925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_34
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 0
+        width: 42
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc17e53784bb4cafa341ea1d07e1a0a
+      internalID: -2061468336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_35
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 0
+        width: 45
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d34ed14234c094b14a62d5b1b95c9810
+      internalID: 118187429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_36
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 0
+        width: 46
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ebb4156c83bb4236bd52c8fc1fee7b8
+      internalID: -58673653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_37
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 0
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26678e9dbd88416985f93474ffe1290
+      internalID: 1123371379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAT+NASRAL+SANTIFREEZE+LEGENDARNO_38
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 0
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc066a10d611419f80a6bea829f3905
+      internalID: 401589268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 19bd3ed4e629943b9ab83fe5193e930b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_0: 1593733535
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_1: -2130271323
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_10: -704006359
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_11: -1903383953
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_12: 2055323483
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_13: 1606113997
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_14: 1511135188
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_15: 1332921620
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_16: -685418990
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_17: 938465656
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_18: 2058957156
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_19: 2021847416
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_2: -1475652925
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_20: -2132461841
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_21: -46193766
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_22: 1244048204
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_23: -1189074724
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_24: 1661567848
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_25: 53012557
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_26: -1933106516
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_27: 821186810
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_28: -533151385
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_29: 94712928
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_3: -528022396
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_30: 595038363
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_31: 711231529
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_32: -2110288162
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_33: 2082455925
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_34: -2061468336
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_35: 118187429
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_36: -58673653
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_37: 1123371379
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_38: 401589268
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_4: 309750814
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_5: -1841971081
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_6: 2004311395
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_7: -315266039
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_8: 206650885
+      CAT+NASRAL+SANTIFREEZE+LEGENDARNO_9: -1867317627
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

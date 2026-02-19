@@ -53,12 +53,27 @@ public class PlayerController : MonoBehaviour
     public int direction;
     private static readonly int xVelocity = Animator.StringToHash("xVelocity");
     private static readonly int yVelocity = Animator.StringToHash("yVelocity");
+    private static readonly int isSprintingParam = Animator.StringToHash("isSprinting");
+    private static readonly int isChaseParam = Animator.StringToHash("isChase");
+    private static readonly int strongJumpParam = Animator.StringToHash("StrongJump");
+
+    private float strongJumpHoldAtNormalizedTime = 0.75f;
+
+    private const string StrongJumpStateName = "strongJump";
+    private const int BaseLayerIndex = 0;
 
     private List<IInteractable> interactables = new List<IInteractable>();
     private const string GroundTag = "Ground";
 
     private float chargeStartTime;
     private bool isChargingJump;
+    private bool isChase;
+
+
+    public void SetChase(bool chase)
+    {
+        isChase = chase;
+    }
 
     private void CancelChargedJump()
     {
@@ -141,6 +156,7 @@ public class PlayerController : MonoBehaviour
     {
         chargeStartTime = Time.time;
         isChargingJump = true;
+        animator.SetTrigger(strongJumpParam);
     }
 
     private void DoChargeJump()
@@ -262,12 +278,39 @@ public class PlayerController : MonoBehaviour
     {
         UpdateLongRunTimer();
         UpdateInteractionZonePosition();
+        UpdateStrongJumpAnimationHold();
+    }
+
+    private void UpdateStrongJumpAnimationHold()
+    {
+        if (animator == null) return;
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(BaseLayerIndex);
+        bool isInStrongJumpState = stateInfo.IsName(StrongJumpStateName);
+
+        if (!isInStrongJumpState)
+        {
+            animator.speed = 1f;
+            return;
+        }
+
+        bool shouldHoldAtFrame6 = isChargingJump && IsGrounded() && stateInfo.normalizedTime >= strongJumpHoldAtNormalizedTime;
+
+        if (shouldHoldAtFrame6)
+        {
+            animator.speed = 0f;
+            animator.Play(Animator.StringToHash(StrongJumpStateName), BaseLayerIndex, strongJumpHoldAtNormalizedTime);
+        }
+        else
+        {
+            animator.speed = 1f;
+        }
     }
 
     private void LateUpdate()
     {
-        // Применяем спрайт присеста после Animator, чтобы аниматор его не перезаписывал
-        if (isCrouched && spriteRenderer != null && crouchSprite != null)
+        // Не перезаписываем спрайт при зарядке прыжка — анимация strong_jump сама меняет кадры
+        if (isCrouched && !isChargingJump && spriteRenderer != null && crouchSprite != null)
             spriteRenderer.sprite = crouchSprite;
     }
 
@@ -275,6 +318,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         animator.SetFloat(yVelocity, rb.linearVelocityY);
+        animator.SetBool(isSprintingParam, wantsToSprint);
+        animator.SetBool(isChaseParam, isChase);
         bool grounded = IsGrounded();
         if (!wasGrounded && grounded)
             ApplyMovementSpeed();
