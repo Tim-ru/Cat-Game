@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float chargedJumpMinForce = 4f;
     [SerializeField] private float chargedJumpMaxForce = 20f;
     [SerializeField] private float chargedJumpMaxChargeTime = 2f;
+    [SerializeField] private float chargedJumpAngleFromNormal = 15f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float groundCheckRadius = 0.2f;
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int isChaseParam = Animator.StringToHash("isChase");
     private static readonly int strongJumpParam = Animator.StringToHash("StrongJump");
 
-    private float strongJumpHoldAtNormalizedTime = 0.75f;
+    private float strongJumpHoldAtNormalizedTime = 0.7f;
 
     private const string StrongJumpStateName = "strongJump";
     private const int BaseLayerIndex = 0;
@@ -172,7 +173,9 @@ public class PlayerController : MonoBehaviour
         float progress = t / chargedJumpMaxChargeTime;
         float force = Mathf.Lerp(chargedJumpMinForce, chargedJumpMaxForce, progress);
 
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, force);
+        float angleRad = chargedJumpAngleFromNormal * Mathf.Deg2Rad;
+        Vector2 jumpDirection = new Vector2(FacingSide * Mathf.Sin(angleRad), Mathf.Cos(angleRad));
+        rb.linearVelocity = jumpDirection * force;
         SetCrouching(false);
     }
 
