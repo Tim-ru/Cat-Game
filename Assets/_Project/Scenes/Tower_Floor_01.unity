@@ -34005,7 +34005,7 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   groundCheckOffset: {x: 0, y: -1}
   crouchSprite: {fileID: 1536492389, guid: 763e13f14674e4af0a032c3d41e8b59d, type: 3}
-  idleSprite: {fileID: -8902724043504370536, guid: 19e77e035cdb94183b9c3179d2ed67f9, type: 3}
+  idleSprite: {fileID: -56626611, guid: 763e13f14674e4af0a032c3d41e8b59d, type: 3}
   spriteRenderer: {fileID: 1037292115}
   boxCollider: {fileID: 1037292118}
   interactionCircleTransform: {fileID: 288021059}
