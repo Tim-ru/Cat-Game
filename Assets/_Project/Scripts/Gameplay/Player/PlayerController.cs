@@ -82,6 +82,12 @@ public class PlayerController : MonoBehaviour
     private void CancelChargedJump()
     {
         isChargingJump = false;
+        if (animator != null)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(BaseLayerIndex);
+            if (stateInfo.IsName(StrongJumpStateName))
+                animator.Play("idle", BaseLayerIndex);
+        }
     }
 
     private bool IsGrounded()
