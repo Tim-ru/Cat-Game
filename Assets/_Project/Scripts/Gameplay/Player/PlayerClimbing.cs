@@ -11,7 +11,7 @@ public class PlayerClimbing : MonoBehaviour
     [SerializeField] private float _heightClimbingTimePercentage = 0.5f;
     [SerializeField] private float _climbingHeight = 1f;
     private const string Ground = "Ground";
-    private Vector2 _point;
+    private Vector2 _point = Vector2.zero;
     private Coroutine _climbingCoroutine;
     private Rigidbody2D _rd;
     private PlayerController _playerController;
