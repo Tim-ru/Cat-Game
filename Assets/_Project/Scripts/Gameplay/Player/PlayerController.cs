@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
 
     private float crouchSpeed = 1.5f;
     private float colliderTransitionSpeed = 6f;
-    private Vector2 crouchColliderSize = new(0.82f, 0.35f);
-    private Vector2 crouchColliderOffset = Vector2.zero;
-    private Vector2 standColliderSize = new(0.82f, 0.6f);
-    private Vector2 standColliderOffset = Vector2.zero;
+    private Vector2 crouchColliderSize = new(0.44f, 0.25f);
+    private Vector2 crouchColliderOffset = new(-0.03f, -0.42f);
+    private Vector2 standColliderSize = new(0.5f, 0.38f);
+    private Vector2 standColliderOffset = new(0.05f, -0.38f);
 
     [SerializeField] private float slowRunSpeed = 10f;
     [SerializeField] private float chaseRunSpeed = 15f;
