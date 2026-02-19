@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerClimbing : MonoBehaviour
 {
-    [SerializeField] private Vector2 _cornerCheckOffset = new(0.3f, 0.2f);
+    [SerializeField] private Vector2 _cornerCheckOffset = new(0.6f, -0.4f);
     [SerializeField] private float _checkDistance = 0.5f;
     [SerializeField] private float _climbingTime = 1f;
     [Range(0, 1f)]
@@ -45,7 +45,7 @@ public class PlayerClimbing : MonoBehaviour
                 if (distance >= _climbingHeight && _climbingCoroutine == null)
                 {
                     var nextPos = hitPoint;
-                    nextPos.y -= (distance - _climbingHeight);
+                    nextPos.y -= (distance - _climbingHeight) + _cornerCheckOffset.y;
                     nextPos.y -= _climbingHeight / 2;
                     _rd.bodyType = RigidbodyType2D.Kinematic;
                     _rd.linearVelocity = Vector2.zero;
