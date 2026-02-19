@@ -373,4 +373,20 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
         Gizmos.DrawWireSphere(point, groundCheckRadius);
     }
+
+    [ContextMenu("Change")]
+    private void ChangeState()
+    {
+        isCrouched = !isCrouched;
+        if (isCrouched)
+        {
+            boxCollider.size = crouchColliderSize;
+            boxCollider.offset = crouchColliderOffset;
+        }
+        else
+        {
+            boxCollider.size = standColliderSize;
+            boxCollider.offset = standColliderOffset;
+        }
+    }
 }

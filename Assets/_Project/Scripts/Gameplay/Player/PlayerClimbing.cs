@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerClimbing : MonoBehaviour
 {
@@ -10,14 +11,18 @@ public class PlayerClimbing : MonoBehaviour
     [Range(0, 1f)]
     [SerializeField] private float _heightClimbingTimePercentage = 0.5f;
     [SerializeField] private float _climbingHeight = 1f;
+    [SerializeField] private PlayerInput _playerInput;
     private const string Ground = "Ground";
     private Vector2 _point = Vector2.zero;
     private Coroutine _climbingCoroutine;
     private Rigidbody2D _rd;
     private PlayerController _playerController;
+    private Animator _animator;
+    private readonly static int CLimbing = Animator.StringToHash("Climbing");
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _rd = GetComponent<Rigidbody2D>();
         _playerController = GetComponent<PlayerController>();
     }
@@ -49,6 +54,8 @@ public class PlayerClimbing : MonoBehaviour
                     nextPos.y -= _climbingHeight / 2;
                     _rd.bodyType = RigidbodyType2D.Kinematic;
                     _rd.linearVelocity = Vector2.zero;
+                    _animator.SetTrigger(CLimbing);
+                    _playerInput.enabled = false;
                     _climbingCoroutine = StartCoroutine(StartClimbing(nextPos));
                 }
                 return;
@@ -76,6 +83,7 @@ public class PlayerClimbing : MonoBehaviour
         }
         _rd.bodyType = RigidbodyType2D.Dynamic;
         _climbingCoroutine = null;
+        _playerInput.enabled = true;
     }
 
     private void OnDrawGizmosSelected()
