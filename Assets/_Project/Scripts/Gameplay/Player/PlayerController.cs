@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 standColliderSize = new(0.82f, 0.6f);
     private Vector2 standColliderOffset = Vector2.zero;
 
-    private float sprintSpeedMultiplier = 3f;
+    [SerializeField] private float slowRunSpeed = 10f;
+    [SerializeField] private float chaseRunSpeed = 15f;
     private float longRunDurationToActivate = 3f;
     private float longRunMultiplier = 1.4f;
     private float longRunMinMoveInput = 0.1f;
@@ -69,10 +70,12 @@ public class PlayerController : MonoBehaviour
     private bool isChargingJump;
     private bool isChase;
 
-
     public void SetChase(bool chase)
     {
+        if (isChase == chase) return;
         isChase = chase;
+        if (IsGrounded())
+            ApplyMovementSpeed();
     }
 
     private void CancelChargedJump()
@@ -210,7 +213,7 @@ public class PlayerController : MonoBehaviour
         if (isCrouched)
             currentSpeed = crouchSpeed;
         else if (wantsToSprint)
-            currentSpeed = maxSpeed * sprintSpeedMultiplier;
+            currentSpeed = isChase ? chaseRunSpeed : slowRunSpeed;
         else if (isLongRunActive)
             currentSpeed = maxSpeed * longRunMultiplier;
         else
@@ -317,6 +320,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float speedForAnimator = Mathf.Abs(rb.linearVelocity.x);
+        animator.SetFloat(xVelocity, speedForAnimator);
         animator.SetFloat(yVelocity, rb.linearVelocityY);
         animator.SetBool(isSprintingParam, wantsToSprint);
         animator.SetBool(isChaseParam, isChase);
