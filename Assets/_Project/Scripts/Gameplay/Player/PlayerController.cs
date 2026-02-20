@@ -190,6 +190,10 @@ public class PlayerController : MonoBehaviour
         if (!crouch && isChargingJump)
             CancelChargedJump();
 
+        if (!crouch)
+        {
+            Physics2D.Raycast(transform.position, Vector2.up, 0.5f);
+        }
         isCrouched = crouch;
 
         if (spriteRenderer != null)

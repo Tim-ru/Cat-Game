@@ -34078,7 +34078,7 @@ Transform:
   m_GameObject: {fileID: 1037292114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.241, y: -1.731, z: 0}
+  m_LocalPosition: {x: -5.668, y: -2.622, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -34192,7 +34192,7 @@ MonoBehaviour:
   interactionZoneOffset: 0.5
   slowRunSpeed: 8
   chaseRunSpeed: 12.5
-  direction: 0
+  direction: 1
 --- !u!114 &1037292120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34401,12 +34401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff4c596c5b124d46adf71f429a41f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerClimbing
-  _cornerCheckOffset: {x: 0.4, y: -0.4}
-  _checkDistance: 0.4
+  _cornerCheckOffset: {x: 0.3, y: -0.4}
+  _checkDistance: 0.15
   _climbingTime: 0.7
   _heightClimbingTimePercentage: 0.75
   _climbingHeight: 1
   _playerInput: {fileID: 1037292120}
+  _playerController: {fileID: 1037292119}
 --- !u!95 &1037292123
 Animator:
   serializedVersion: 7
@@ -34786,7 +34787,7 @@ Transform:
   m_GameObject: {fileID: 1089171645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.241007, y: 1.7283647, z: -10}
+  m_LocalPosition: {x: -5.6680026, y: 1.7283647, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38354,7 +38355,7 @@ Transform:
   m_GameObject: {fileID: 2008404774}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.241, y: -1.731, z: -10}
+  m_LocalPosition: {x: -5.668, y: -2.622, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
