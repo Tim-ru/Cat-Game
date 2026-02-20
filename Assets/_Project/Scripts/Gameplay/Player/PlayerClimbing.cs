@@ -13,6 +13,7 @@ public class PlayerClimbing : MonoBehaviour
     [SerializeField] private float _climbingHeight = 1f;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PlayerVFXSpawner _vfxSpawner;
     private const string Ground = "Ground";
     private Vector2 _point = Vector2.zero;
     private Coroutine _climbingCoroutine;
@@ -25,6 +26,7 @@ public class PlayerClimbing : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rd = GetComponent<Rigidbody2D>();
         if (!_playerController) _playerController = GetComponent<PlayerController>();
+        if (!_vfxSpawner) _vfxSpawner = GetComponent<PlayerVFXSpawner>();
     }
 #if UNITY_EDITOR
     private void OnValidate()
@@ -59,6 +61,8 @@ public class PlayerClimbing : MonoBehaviour
                     transform.position = startAnimPos;
                     _rd.bodyType = RigidbodyType2D.Kinematic;
                     _rd.linearVelocity = Vector2.zero;
+                    if (_vfxSpawner != null)
+                        _vfxSpawner.SpawnClimb((Vector3)col.point);
                     _animator.SetTrigger(CLimbing);
                     _playerInput.enabled = false;
                     _climbingCoroutine = StartCoroutine(StartClimbing(nextPos));
