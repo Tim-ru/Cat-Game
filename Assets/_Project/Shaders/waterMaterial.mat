@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _WaterTexture:
-        m_Texture: {fileID: 2800000, guid: 535acdcc9371653468ca1474b09f7c13, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6c34e2f08fd32d446a86df1d147be71d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _rendText:
@@ -58,9 +58,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ReflectionStrength: 1
-    - _WaterSpeed: 0.2
+    - _NoseStrength: 0.5
+    - _ReflectionStrength: 5
+    - _Speed: 0.1
+    - _WaterSpeed: 0.05
     m_Colors:
-    - _WaterColor: {r: 0.759434, g: 0.96621263, b: 1, a: 1}
+    - _WaterColor: {r: 0.49461555, g: 0.56467694, b: 0.6132076, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
