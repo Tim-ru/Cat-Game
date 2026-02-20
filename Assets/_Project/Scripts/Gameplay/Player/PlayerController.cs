@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform interactionCircleTransform;
     [SerializeField] private float interactionZoneOffset = 0.5f;
 
+    [SerializeField] private ParticleSystem runParticles;
+    [SerializeField] private PlayerVFXSpawner vfxSpawner;
+
     private float crouchSpeed = 1.5f;
     private float colliderTransitionSpeed = 6f;
     private Vector2 crouchColliderSize = new(0.44f, 0.25f);
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private float chargeStartTime;
     private bool isChargingJump;
     private bool isChase;
+    private Vector2 lastAirVelocity;
 
     private Vector2 _pointLeft;
     private Vector2 _pointRight;
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
+        if (vfxSpawner == null) vfxSpawner = GetComponent<PlayerVFXSpawner>();
         animator = GetComponent<Animator>();
 
         currentSpeed = maxSpeed;
@@ -169,6 +174,8 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyNormalJump()
     {
+        if (vfxSpawner != null)
+            vfxSpawner.SpawnJumpTakeoff(GetFeetPosition(), jumpForce);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
@@ -191,6 +198,8 @@ public class PlayerController : MonoBehaviour
 
         float angleRad = chargedJumpAngleFromNormal * Mathf.Deg2Rad;
         Vector2 jumpDirection = new Vector2(FacingSide * Mathf.Sin(angleRad), Mathf.Cos(angleRad));
+        if (vfxSpawner != null)
+            vfxSpawner.SpawnJumpTakeoff(GetFeetPosition(), force);
         rb.linearVelocity = jumpDirection * force;
         SetCrouching(false);
     }
@@ -266,6 +275,33 @@ public class PlayerController : MonoBehaviour
             currentSpeed = maxSpeed * longRunMultiplier;
         else
             currentSpeed = maxSpeed;
+
+    }
+
+    private Vector3 GetFeetPosition()
+    {
+        return transform.position + (Vector3)groundCheckOffset;
+    }
+
+    private void UpdateRunParticles()
+    {
+        if (runParticles == null) return;
+        bool shouldRun = IsGrounded() && Mathf.Abs(moveInput.x) >= 0.05f && currentSpeed > maxSpeed;
+        if (shouldRun)
+        {
+            runParticles.gameObject.SetActive(true);
+            Vector3 scale = runParticles.transform.localScale;
+            scale.x = -Mathf.Sign(moveInput.x);
+            runParticles.transform.localScale = scale;
+            if (!runParticles.isPlaying)
+                runParticles.Play();
+        }
+        else
+        {
+            if (runParticles.isPlaying)
+                runParticles.Stop();
+            runParticles.gameObject.SetActive(false);
+        }
     }
 
     public void AddInteractable(IInteractable interactable)
@@ -330,6 +366,7 @@ public class PlayerController : MonoBehaviour
         UpdateLongRunTimer();
         UpdateInteractionZonePosition();
         UpdateStrongJumpAnimationHold();
+        UpdateRunParticles();
     }
 
     private void UpdateStrongJumpAnimationHold()
@@ -375,7 +412,13 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(isChaseParam, isChase);
         bool grounded = IsGrounded();
         if (!wasGrounded && grounded)
+        {
             ApplyMovementSpeed();
+            if (vfxSpawner != null)
+                vfxSpawner.SpawnLanding(GetFeetPosition(), lastAirVelocity.y);
+        }
+        if (!grounded)
+            lastAirVelocity = rb.linearVelocity;
         wasGrounded = grounded;
 
         if (boxCollider != null)
