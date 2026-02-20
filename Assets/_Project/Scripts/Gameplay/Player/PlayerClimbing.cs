@@ -12,19 +12,19 @@ public class PlayerClimbing : MonoBehaviour
     [SerializeField] private float _heightClimbingTimePercentage = 0.5f;
     [SerializeField] private float _climbingHeight = 1f;
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PlayerController _playerController;
     private const string Ground = "Ground";
     private Vector2 _point = Vector2.zero;
     private Coroutine _climbingCoroutine;
     private Rigidbody2D _rd;
-    private PlayerController _playerController;
     private Animator _animator;
     private readonly static int CLimbing = Animator.StringToHash("Climbing");
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _rd = GetComponent<Rigidbody2D>();
-        _playerController = GetComponent<PlayerController>();
+        if (!_playerController) _playerController = GetComponent<PlayerController>();
     }
 #if UNITY_EDITOR
     private void OnValidate()
