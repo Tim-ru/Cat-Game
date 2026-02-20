@@ -9,6 +9,25 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource percussionSource;
     [SerializeField] private float fadeTime = 1.5f;
     [SerializeField] private float chaseLayerFadeTime = 0.8f;
+<<<<<<< HEAD
+
+    private float melodyVolume = 1f;
+    private float percussionVolume;
+    private float targetPercussionVolume;
+    private Coroutine currentFade;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        if (melodySource != null) melodySource.loop = true;
+        if (percussionSource != null) percussionSource.loop = true;
+=======
     private float percussionVolume;
     private float melodyVolume;
     private float targetPercussionVolume;
@@ -24,10 +43,26 @@ public class MusicManager : MonoBehaviour
         melodyVolume = maxMelodyVolume;
         percussionVolume = 0f;
         targetPercussionVolume = percussionVolume;
+>>>>>>> Checoffix
     }
 
     private void Update()
     {
+<<<<<<< HEAD
+        float k = (GameSettings.I != null) ? GameSettings.I.Music.Value : 1f;
+        if (melodySource != null) melodySource.volume = melodyVolume * k;
+        if (percussionSource != null) percussionSource.volume = percussionVolume * k;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
+    public void SetChaseLayer(bool on)
+    {
+        targetPercussionVolume = on ? 1f : 0f;
+=======
         if (_isVolumeChanging)
         {
             if (melodySource != null) melodySource.volume = melodyVolume;
@@ -39,6 +74,7 @@ public class MusicManager : MonoBehaviour
         maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
         targetPercussionVolume = on ? 1f : 0f;
         targetPercussionVolume = targetPercussionVolume > maxMelodyVolume ? maxMelodyVolume : targetPercussionVolume;
+>>>>>>> Checoffix
         if (currentFade != null) StopCoroutine(currentFade);
         currentFade = StartCoroutine(LerpVolumes(melodyVolume, melodyVolume, percussionVolume, targetPercussionVolume, chaseLayerFadeTime));
     }
@@ -65,14 +101,21 @@ public class MusicManager : MonoBehaviour
         melodyVolume = 0f;
         percussionVolume = 0f;
         if (currentFade != null) StopCoroutine(currentFade);
+<<<<<<< HEAD
+        currentFade = StartCoroutine(LerpVolumes(0f, 1f, 0f, targetPercussionVolume, Mathf.Max(0.1f, fadeTime)));
+=======
         maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
         currentFade = StartCoroutine(LerpVolumes(0f, maxMelodyVolume, 0f, targetPercussionVolume, Mathf.Max(0.1f, fadeTime)));
+>>>>>>> Checoffix
     }
 
     // Плавно меняем громкости за time
     private IEnumerator LerpVolumes(float fromMelody, float toMelody, float fromPerc, float toPerc, float time, bool isMainFade = true)
     {
+<<<<<<< HEAD
+=======
         _isVolumeChanging = true;
+>>>>>>> Checoffix
         float t = 0f;
         while (t < time)
         {
@@ -84,8 +127,11 @@ public class MusicManager : MonoBehaviour
         }
         melodyVolume = toMelody;
         percussionVolume = toPerc;
+<<<<<<< HEAD
+=======
         yield return null;
         _isVolumeChanging = false;
+>>>>>>> Checoffix
         if (isMainFade) currentFade = null;
     }
 
@@ -110,10 +156,16 @@ public class MusicManager : MonoBehaviour
         }
 
         // 3. Плавно прибавить волюма
+<<<<<<< HEAD
+        yield return StartCoroutine(LerpVolumes(0f, 1f, 0f, targetPercussionVolume, duration, isMainFade: false));
+
+        melodyVolume = 1f;
+=======
         maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
         yield return StartCoroutine(LerpVolumes(0f, maxMelodyVolume, 0f, targetPercussionVolume, duration, isMainFade: false));
 
         melodyVolume = maxMelodyVolume;
+>>>>>>> Checoffix
         percussionVolume = targetPercussionVolume;
         currentFade = null;
     }
