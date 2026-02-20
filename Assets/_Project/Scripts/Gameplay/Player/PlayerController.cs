@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour
     private float crouchSpeed = 1.5f;
     private float colliderTransitionSpeed = 6f;
     private Vector2 crouchColliderSize = new(0.44f, 0.25f);
-    private Vector2 crouchColliderOffset = new(-0.03f, -0.42f);
-    private Vector2 standColliderSize = new(0.5f, 0.38f);
-    private Vector2 standColliderOffset = new(0.05f, -0.38f);
+    private Vector2 crouchColliderOffset = new(-0.03f, -0.525f);
+    private Vector2 standColliderSize = new(0.5f, 0.4f);
+    private Vector2 standColliderOffset = new(0.05f, -0.45f);
 
     [SerializeField] private float slowRunSpeed = 10f;
     [SerializeField] private float chaseRunSpeed = 15f;
@@ -46,7 +46,8 @@ public class PlayerController : MonoBehaviour
     private float longRunTimer;
     private bool wantsToSprint;
     private bool wasGrounded;
-    private bool isCrouched;
+    private bool isCrouching;
+    private bool crouchPressed;
     private float currentSpeed;
     private Vector2 colliderSizeVelocity;
     private Vector2 colliderOffsetVelocity;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int isChaseParam = Animator.StringToHash("isChase");
     private static readonly int strongJumpParam = Animator.StringToHash("StrongJump");
 
-    private float strongJumpHoldAtNormalizedTime = 0.7f;
+    private readonly float strongJumpHoldAtNormalizedTime = 0.7f;
 
     private const string StrongJumpStateName = "strongJump";
     private const int BaseLayerIndex = 0;
@@ -70,6 +71,9 @@ public class PlayerController : MonoBehaviour
     private float chargeStartTime;
     private bool isChargingJump;
     private bool isChase;
+
+    private Vector2 _pointLeft;
+    private Vector2 _pointRight;
 
     public void SetChase(bool chase)
     {
@@ -118,6 +122,12 @@ public class PlayerController : MonoBehaviour
         }
         SetCrouching(false);
         wasGrounded = IsGrounded();
+        _pointRight = (Vector2)boxCollider.bounds.center;
+        _pointRight.x -= standColliderSize.x / 2;
+        _pointRight.y += crouchColliderSize.y / 2;
+        _pointLeft = (Vector2)boxCollider.bounds.center;
+        _pointLeft.x += standColliderSize.x / 2;
+        _pointLeft.y += crouchColliderSize.y / 2;
     }
 
     public void OnMove(Vector2 move)
@@ -141,7 +151,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsGrounded()) return;
 
-        if (isCrouched)
+        if (isCrouching)
         {
             StartChargingJump();
         }
@@ -189,12 +199,24 @@ public class PlayerController : MonoBehaviour
     {
         if (!crouch && isChargingJump)
             CancelChargedJump();
-
+        crouchPressed = crouch;
         if (!crouch)
         {
-            Physics2D.Raycast(transform.position, Vector2.up, 0.5f);
+            _pointRight = (Vector2)boxCollider.bounds.center;
+            _pointRight.x -= standColliderSize.x / 2;
+            _pointRight.y += crouchColliderSize.y / 2;
+            bool _isAbleToStandUp;
+            var hit1 = Physics2D.RaycastAll(_pointRight, Vector2.up, 0.15f);
+            _isAbleToStandUp = !CheckGround(hit1);
+            if (!_isAbleToStandUp) return;
+            _pointLeft = (Vector2)boxCollider.bounds.center;
+            _pointLeft.x += standColliderSize.x / 2;
+            _pointLeft.y += crouchColliderSize.y / 2;
+            var hit2 = Physics2D.RaycastAll(_pointLeft, Vector2.up, 0.15f);
+            _isAbleToStandUp = !CheckGround(hit2);
+            if (!_isAbleToStandUp) return;
         }
-        isCrouched = crouch;
+        isCrouching = crouch;
 
         if (spriteRenderer != null)
         {
@@ -209,6 +231,19 @@ public class PlayerController : MonoBehaviour
         ApplyMovementSpeed();
     }
 
+    private bool CheckGround(RaycastHit2D[] hit)
+    {
+        if (hit.Length != 0)
+        {
+            foreach (var ht in hit)
+            {
+                if (ht.collider.CompareTag(GroundTag)) return true;
+            }
+            return false;
+        }
+        else return false;
+    }
+
     public void SetSprinting(bool sprint)
     {
         wantsToSprint = sprint;
@@ -221,9 +256,9 @@ public class PlayerController : MonoBehaviour
         if (!grounded)
             return;
 
-        bool isLongRunActive = longRunTimer >= longRunDurationToActivate && !isCrouched;
+        bool isLongRunActive = longRunTimer >= longRunDurationToActivate && !isCrouching;
 
-        if (isCrouched)
+        if (isCrouching)
             currentSpeed = crouchSpeed;
         else if (wantsToSprint)
             currentSpeed = isChase ? chaseRunSpeed : slowRunSpeed;
@@ -249,7 +284,7 @@ public class PlayerController : MonoBehaviour
         bool isMoving = Mathf.Abs(moveInput.x) >= longRunMinMoveInput;
         bool wasLongRunActive = longRunTimer >= longRunDurationToActivate;
 
-        if (!isCrouched && isMoving)
+        if (!isCrouching && isMoving)
             longRunTimer += Time.deltaTime;
         else
             longRunTimer = 0f;
@@ -326,7 +361,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         // Не перезаписываем спрайт при зарядке прыжка — анимация strong_jump сама меняет кадры
-        if (isCrouched && !isChargingJump && spriteRenderer != null && crouchSprite != null)
+        if (isCrouching && !isChargingJump && spriteRenderer != null && crouchSprite != null)
             spriteRenderer.sprite = crouchSprite;
     }
 
@@ -345,8 +380,8 @@ public class PlayerController : MonoBehaviour
 
         if (boxCollider != null)
         {
-            Vector2 targetSize = isCrouched ? crouchColliderSize : standColliderSize;
-            Vector2 targetOffset = isCrouched ? crouchColliderOffset : standColliderOffset;
+            Vector2 targetSize = isCrouching ? crouchColliderSize : standColliderSize;
+            Vector2 targetOffset = isCrouching ? crouchColliderOffset : standColliderOffset;
             float deltaTime = Time.fixedDeltaTime;
 
             boxCollider.size = Vector2.SmoothDamp(boxCollider.size, targetSize, ref colliderSizeVelocity, 1f / colliderTransitionSpeed, float.PositiveInfinity, deltaTime);
@@ -369,6 +404,11 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.gravityScale = (rb.linearVelocity.y < apexThreshold) ? gravityScaleDown : 1f;
+
+        if (crouchPressed != isCrouching)
+        {
+            SetCrouching(crouchPressed);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -376,13 +416,15 @@ public class PlayerController : MonoBehaviour
         Vector2 point = (Vector2)transform.position + groundCheckOffset;
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
         Gizmos.DrawWireSphere(point, groundCheckRadius);
+        Gizmos.DrawLine(_pointRight, _pointRight + Vector2.up * 0.15f);
+        Gizmos.DrawLine(_pointLeft, _pointLeft + Vector2.up * 0.15f);
     }
 
     [ContextMenu("Change")]
     private void ChangeState()
     {
-        isCrouched = !isCrouched;
-        if (isCrouched)
+        isCrouching = !isCrouching;
+        if (isCrouching)
         {
             boxCollider.size = crouchColliderSize;
             boxCollider.offset = crouchColliderOffset;

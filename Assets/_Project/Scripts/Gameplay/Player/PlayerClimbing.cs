@@ -52,6 +52,11 @@ public class PlayerClimbing : MonoBehaviour
                     var nextPos = hitPoint;
                     nextPos.y -= (distance - _climbingHeight) + _cornerCheckOffset.y;
                     nextPos.y -= _climbingHeight / 2;
+                    nextPos.y -= 0.3f;
+                    var startAnimPos = transform.position;
+                    startAnimPos.x = col.point.x - 0.2f * _playerController.direction;
+                    startAnimPos.y = nextPos.y - 1f;
+                    transform.position = startAnimPos;
                     _rd.bodyType = RigidbodyType2D.Kinematic;
                     _rd.linearVelocity = Vector2.zero;
                     _animator.SetTrigger(CLimbing);
