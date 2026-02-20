@@ -18,7 +18,7 @@ public class AudioSettingsComponent : MonoBehaviour
 
     private void OnSoundSettingsChanged(float newValue, float oldValue)
     {
-        _source.volume = newValue;
+        _source.volume = newValue * GameSettings.I.Master.Value;
     }
 
     private FloatPersistentProperty FindProperty()

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7807be673484a45bc2975f62c99496, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
+  _master:
+    _value: 0.1
   _music:
     _value: 1
   _sfx:
     _value: 1
   _screenShake:
-    _value: 1
-  _firstGame:
     _value: 1
