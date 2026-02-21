@@ -14,6 +14,7 @@ public class CutsceneComponent : MonoBehaviour
     [SerializeField] private CinemachineCamera _camera;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private ScreenShake _screenShake;
+    [SerializeField] private PlayerController _player;
     private Coroutine _CutsceneCoroutine;
     private float currentCamSize;
     private Vector3 currentCamPosition;
@@ -23,14 +24,15 @@ public class CutsceneComponent : MonoBehaviour
     private float _AllMovementTime;
     private float _resizeTime;
     private float _AllResizeTime;
+    private float _playerMoveTime;
     private bool _isPlaying = false;
 
+    [ContextMenu("Play")]
     public void Play()
     {
         if (_CutsceneCoroutine != null) StopCoroutine(_CutsceneCoroutine);
         _CutsceneCoroutine = StartCoroutine(StartCutscene());
         _playerInput.enabled = false;
-        _camera.Follow = null;
     }
 
     private IEnumerator StartCutscene()
@@ -40,7 +42,6 @@ public class CutsceneComponent : MonoBehaviour
             yield return StartCutsceneItem(_actions[i]._actions);
         }
         _playerInput.enabled = true;
-        _camera.Follow = _playerInput.gameObject.transform;
     }
     public IEnumerator StartCutsceneItem(List<CutsceneActionsItem> _actions)
     {
@@ -54,6 +55,7 @@ public class CutsceneComponent : MonoBehaviour
             switch (_actions[i]._actionType)
             {
                 case Actions.MoveCamera:
+                    yield return new WaitForSeconds(_actions[i]._pauseTime);
                     if (currentCamPosition != targetCamPosition)
                         yield return new WaitForSeconds(_movementTime);
                     targetCamPosition = _actions[i]._targetCameraPosition;
@@ -61,8 +63,10 @@ public class CutsceneComponent : MonoBehaviour
                     _AllMovementTime = _movementTime;
                     break;
                 case Actions.ResizeCamera:
+                    yield return new WaitForSeconds(_actions[i]._pauseTime);
                     if (currentCamSize != targetCamSize)
                         yield return new WaitForSeconds(_resizeTime);
+                    if (_actions[i]._unfollowTargetDuringScene) _camera.Follow = null;
                     targetCamSize = _actions[i]._targetCameraSize;
                     _resizeTime = _actions[i]._duration;
                     _AllResizeTime = _resizeTime;
@@ -70,9 +74,25 @@ public class CutsceneComponent : MonoBehaviour
                 case Actions.ShakeCamera:
                     _screenShake.ShakeCamera(_actions[i]._shakeStrength, _actions[i]._duration);
                     break;
+                case Actions.MovePlayer:
+                    yield return new WaitForSeconds(_actions[i]._pauseTime);
+                    _playerMoveTime = _actions[i]._duration;
+                    _player.OnMove(_actions[i]._playerMovementVector);
+                    break;
+                case Actions.AddVelocityToPlayer:
+                    yield return new WaitForSeconds(_actions[i]._pauseTime);
+                    _playerMoveTime = _actions[i]._duration;
+                    _player.OnMove(_actions[i]._playerMovementVector);
+                    break;
+                case Actions.JumpPlayer:
+                    yield return new WaitForSeconds(_actions[i]._pauseTime);
+                    _player.OnJumpPressed();
+                    break;
             }
         }
-        yield return new WaitForSeconds(_movementTime > _resizeTime ? _movementTime : _resizeTime);
+        var maxTime = Math.Max(_movementTime, _resizeTime);
+        maxTime = Math.Max(maxTime, _playerMoveTime);
+        yield return new WaitForSeconds(maxTime);
         _isPlaying = false;
     }
     private void Update()
@@ -96,6 +116,15 @@ public class CutsceneComponent : MonoBehaviour
             {
                 currentCamSize = targetCamSize;
                 _camera.Lens.OrthographicSize = targetCamSize;
+                _camera.Follow = _player.transform;
+            }
+        }
+        if (_playerMoveTime > 0)
+        {
+            _playerMoveTime -= Time.deltaTime;
+            if (_playerMoveTime <= 0)
+            {
+                _player.OnMove(Vector2.zero);
             }
         }
     }
@@ -114,9 +143,11 @@ public class CutsceneActionsItem
     [Tooltip("Pause before starting for Screen Shake")]
     public float _pauseTime;
     public Vector3 _targetCameraPosition;
+    public Vector2 _playerMovementVector;
     //public AnimationCurve _speed;
     public float _targetCameraSize;
     public float _shakeStrength;
+    public bool _unfollowTargetDuringScene;
 }
 
 [Serializable]
@@ -124,5 +155,8 @@ public enum Actions
 {
     MoveCamera,
     ResizeCamera,
-    ShakeCamera
+    ShakeCamera,
+    MovePlayer,
+    AddVelocityToPlayer,
+    JumpPlayer
 }

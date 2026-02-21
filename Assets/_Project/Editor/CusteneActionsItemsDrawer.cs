@@ -13,7 +13,6 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
         Rect rect = new(position.x, position.y, position.width, 0);
 
         DrawProperty(ref rect, property.FindPropertyRelative("_actionType"));
-        DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
 
         var actionType = property.FindPropertyRelative("_actionType");
         Actions type = (Actions)actionType.enumValueIndex;
@@ -21,18 +20,40 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
         switch (type)
         {
             case Actions.MoveCamera:
+                DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
                 DrawProperty(ref rect, property.FindPropertyRelative("_targetCameraPosition"));
                 //DrawProperty(ref rect, property.FindPropertyRelative("_speed"));
                 break;
 
             case Actions.ResizeCamera:
+                DrawProperty(ref rect, property.FindPropertyRelative("_unfollowTargetDuringScene"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
                 DrawProperty(ref rect, property.FindPropertyRelative("_targetCameraSize"));
                 //DrawProperty(ref rect, property.FindPropertyRelative("_speed"));
                 break;
 
             case Actions.ShakeCamera:
+                DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
                 DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
                 DrawProperty(ref rect, property.FindPropertyRelative("_shakeStrength"));
+                break;
+
+            case Actions.MovePlayer:
+                DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_playerMovementVector"));
+                break;
+
+            case Actions.AddVelocityToPlayer:
+                DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_playerMovementVector"));
+                break;
+
+            case Actions.JumpPlayer:
+                DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
                 break;
         }
 
@@ -54,7 +75,6 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
         float totalHeight = 0f;
 
         totalHeight += GetHeight(property.FindPropertyRelative("_actionType"));
-        totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
 
         var actionType = property.FindPropertyRelative("_actionType");
         Actions type = (Actions)actionType.enumValueIndex;
@@ -62,17 +82,39 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
         switch (type)
         {
             case Actions.MoveCamera:
+                totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
                 totalHeight += GetHeight(property.FindPropertyRelative("_targetCameraPosition"));
                 //totalHeight += GetHeight(property.FindPropertyRelative("_speed"));
                 break;
 
             case Actions.ResizeCamera:
+                totalHeight += GetHeight(property.FindPropertyRelative("_unfollowTargetDuringScene"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
                 totalHeight += GetHeight(property.FindPropertyRelative("_targetCameraSize"));
                 break;
 
             case Actions.ShakeCamera:
+                totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
                 totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
                 totalHeight += GetHeight(property.FindPropertyRelative("_shakeStrength"));
+                break;
+
+            case Actions.MovePlayer:
+                totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_playerMovementVector"));
+                break;
+
+            case Actions.AddVelocityToPlayer:
+                totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_playerMovementVector"));
+                break;
+
+            case Actions.JumpPlayer:
+                totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
                 break;
         }
 
