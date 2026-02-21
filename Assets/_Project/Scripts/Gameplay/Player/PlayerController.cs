@@ -143,6 +143,11 @@ public class PlayerController : MonoBehaviour
         moveInput = move;
     }
 
+    public void SetVelocity(Vector2 velocity)
+    {
+        rb.linearVelocity = velocity;
+    }
+
     private int FacingSide
     {
         get
