@@ -5,7 +5,8 @@ public class PlayerDeathHandler : MonoBehaviour
 {
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private Animator fadeAnimator;
-    [SerializeField] private float deathDelayBeforeRespawn = 0.5f;
+    [SerializeField] private CheckpointsComponent checkpoints;
+    [SerializeField] private float fadeDuration = 1f;
 
     private PlayerController playerController;
     private Rigidbody2D rb;
@@ -28,14 +29,22 @@ public class PlayerDeathHandler : MonoBehaviour
         if (isDead) return;
         isDead = true;
         if (playerController != null) playerController.enabled = false;
-        if (fadeAnimator != null) fadeAnimator.SetTrigger("Die");
+        if (fadeAnimator != null)
+        {
+            if (!fadeAnimator.gameObject.activeInHierarchy)
+                fadeAnimator.gameObject.SetActive(true);
+            fadeAnimator.SetTrigger("Fade");
+        }
         StartCoroutine(DeathRoutine());
     }
 
     private IEnumerator DeathRoutine()
     {
-        yield return new WaitForSeconds(deathDelayBeforeRespawn);
-        transform.position = respawnPoint != null ? respawnPoint.position : transform.position;
+        yield return new WaitForSeconds(fadeDuration);
+        if (checkpoints != null)
+            checkpoints.ReloadFromCheckpoint();
+        else if (respawnPoint != null)
+            transform.position = respawnPoint.position;
         if (rb != null) rb.linearVelocity = Vector2.zero;
         isDead = false;
         if (playerController != null) playerController.enabled = true;
