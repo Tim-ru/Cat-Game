@@ -57,6 +57,10 @@ public class AudioComponent : MonoBehaviour
     {
         _musicManager.StopCurrentSfx();
     }
+    public void ChangeLoopSfx()
+    {
+        _musicManager.ChangeLoopSfx();
+    }
 
     [Serializable]
     private class AudioData

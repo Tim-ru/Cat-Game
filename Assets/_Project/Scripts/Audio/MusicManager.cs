@@ -164,9 +164,14 @@ public class MusicManager : MonoBehaviour
         sfxSource.Stop();
     }
 
-    internal void StopCurrent()
+    public void StopCurrent()
     {
         percussionSource.Stop();
         melodySource.Stop();
+    }
+
+    public void ChangeLoopSfx()
+    {
+        sfxSource.loop = !sfxSource.loop;
     }
 }
