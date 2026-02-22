@@ -60,6 +60,7 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
                 DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
                 DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
                 DrawProperty(ref rect, property.FindPropertyRelative("_followingObject"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_followingOffset"));
                 break;
         }
 
@@ -127,6 +128,7 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
                 totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
                 totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
                 totalHeight += GetHeight(property.FindPropertyRelative("_followingObject"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_followingOffset"));
                 break;
         }
 

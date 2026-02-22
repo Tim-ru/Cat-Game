@@ -7,11 +7,13 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.DefaultInputActions;
 
 public class CutsceneComponent : MonoBehaviour
 {
     [SerializeField] private List<CutsceneActions> _actions;
     [SerializeField] private CinemachineCamera _camera;
+    [SerializeField] private CinemachinePositionComposer _cameraPositionComposer;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private ScreenShake _screenShake;
     [SerializeField] private PlayerController _player;
@@ -25,8 +27,7 @@ public class CutsceneComponent : MonoBehaviour
     private float _resizeTime;
     private float _AllResizeTime;
     private float _playerMoveTime;
-    private float _followingTime;
-    private float _AllfollowingTime;
+    private Vector2 _defaultOffset;
     private bool _isPlaying = false;
 
     [ContextMenu("Play")]
@@ -93,7 +94,15 @@ public class CutsceneComponent : MonoBehaviour
                     break;
                 case Actions.FollowNewObject:
                     yield return new WaitForSeconds(_actions[i]._pauseTime);
+                    if (_cameraPositionComposer != null)
+                    {
+                        _defaultOffset = _cameraPositionComposer.TargetOffset;
+                        _cameraPositionComposer.TargetOffset = _actions[i]._followingOffset;
+                    }
+                    _camera.Follow = _actions[i]._followingObject;
                     yield return new WaitForSeconds(_actions[i]._duration);
+                    _camera.Follow = _player.transform;
+                    if (_cameraPositionComposer != null) _cameraPositionComposer.TargetOffset = _defaultOffset;
                     break;
             }
         }
@@ -157,6 +166,7 @@ public class CutsceneActionsItem
     public float _shakeStrength;
     public bool _unfollowTargetDuringScene;
     public Transform _followingObject;
+    public Vector2 _followingOffset;
 }
 
 [Serializable]

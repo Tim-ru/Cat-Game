@@ -25,7 +25,7 @@ public class AudioComponent : MonoBehaviour
         {
             if (audio.id == id)
             {
-                _musicManager.PlaySfx(audio.audio);
+                _musicManager.PlaySfxWithoutFade(audio.audio);
             }
         }
     }
@@ -45,7 +45,7 @@ public class AudioComponent : MonoBehaviour
         {
             if (audio.id == id)
             {
-                _musicManager.Play(audio.audio);
+                _musicManager.PlayWithoutFade(audio.audio);
             }
         }
     }
