@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.DefaultInputActions;
 
@@ -17,6 +18,7 @@ public class CutsceneComponent : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private ScreenShake _screenShake;
     [SerializeField] private PlayerController _player;
+    [SerializeField] private UnityEvent _onCutsceneEnd;
     private Coroutine _CutsceneCoroutine;
     private float currentCamSize;
     private Vector3 currentCamPosition;
@@ -29,6 +31,7 @@ public class CutsceneComponent : MonoBehaviour
     private float _playerMoveTime;
     private Vector2 _defaultOffset;
     private bool _isPlaying = false;
+    private bool _isUnfolowingNow = false;
 
     [ContextMenu("Play")]
     public void Play()
@@ -42,9 +45,20 @@ public class CutsceneComponent : MonoBehaviour
     {
         for (int i = 0; i < _actions.Count; ++i)
         {
+            if (_actions[i]._unfollowTargetAllTime)
+            {
+                _isUnfolowingNow = true;
+                _camera.Follow = null;
+            }
             yield return StartCutsceneItem(_actions[i]._actions);
+            if (_actions[i]._unfollowTargetAllTime)
+            {
+                _isUnfolowingNow = false;
+                _camera.Follow = _player.transform;
+            }
         }
         _playerInput.enabled = true;
+        _onCutsceneEnd?.Invoke();
     }
     public IEnumerator StartCutsceneItem(List<CutsceneActionsItem> _actions)
     {
@@ -120,7 +134,7 @@ public class CutsceneComponent : MonoBehaviour
             _movementTime -= Time.deltaTime;
             if (_movementTime <= 0)
             {
-                _camera.Follow = _player.transform;
+                if (!_isUnfolowingNow) _camera.Follow = _player.transform;
                 currentCamPosition = targetCamPosition;
                 _camera.transform.position = targetCamPosition;
             }
@@ -133,7 +147,7 @@ public class CutsceneComponent : MonoBehaviour
             {
                 currentCamSize = targetCamSize;
                 _camera.Lens.OrthographicSize = targetCamSize;
-                _camera.Follow = _player.transform;
+                if (!_isUnfolowingNow) _camera.Follow = _player.transform;
             }
         }
         if (_playerMoveTime > 0)
@@ -150,6 +164,7 @@ public class CutsceneComponent : MonoBehaviour
 public class CutsceneActions
 {
     public List<CutsceneActionsItem> _actions;
+    public bool _unfollowTargetAllTime;
 }
 
 [Serializable]
