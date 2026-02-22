@@ -74,6 +74,17 @@ public class MusicManager : MonoBehaviour
         currentFade = StartCoroutine(LerpVolumes(0f, maxVolume, 0f, targetPercussionVolume, sfxVolume, sfxVolume, Mathf.Max(0.1f, fadeTime)));
     }
 
+    public void PlayWithoutFade(AudioClip melody, AudioClip percussion = null)
+    {
+        if (melodySource != null && melody != null)
+        {
+            melodySource.clip = melody;
+            melodySource.Play();
+            maxVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
+            melodyVolume = maxVolume;
+        }
+    }
+
     public void PlaySfx(AudioClip melody)
     {
         if (sfxSource != null && melody != null)
@@ -85,6 +96,16 @@ public class MusicManager : MonoBehaviour
         if (currentFade != null) StopCoroutine(currentFade);
         maxSfxVolume = GameSettings.I.Sfx.Value * GameSettings.I.Master.Value;
         currentFade = StartCoroutine(LerpVolumes(melodyVolume, melodyVolume, percussionVolume, percussionVolume, 0f, maxSfxVolume, Mathf.Max(0.1f, fadeTime)));
+    }
+    public void PlaySfxWithoutFade(AudioClip melody)
+    {
+        if (sfxSource != null && melody != null)
+        {
+            sfxSource.clip = melody;
+            sfxSource.Play();
+            maxSfxVolume = GameSettings.I.Sfx.Value * GameSettings.I.Master.Value;
+            sfxVolume = maxSfxVolume;
+        }
     }
 
     // Плавно меняем громкости за time

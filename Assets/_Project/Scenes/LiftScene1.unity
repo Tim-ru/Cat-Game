@@ -726,9 +726,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 564808116816997881, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564808116816997881, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564808116816997881, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 564808116816997881, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056141387525929366, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056141387525929366, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056141387525929366, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056141387525929366, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572933588300584987, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572933588300584987, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572933588300584987, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572933588300584987, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -175
+      objectReference: {fileID: 0}
     - target: {fileID: 7008356517238547482, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008356517238547482, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895518549925286599, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895518549925286599, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895518549925286599, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895518549925286599, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -125
       objectReference: {fileID: 0}
     - target: {fileID: 8612836748976391498, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
       propertyPath: m_Pivot.x
@@ -792,11 +860,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8612836748976391498, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4.12916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8612836748976391498, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.19527
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8612836748976391498, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1402,6 +1470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838768399}
   - component: {fileID: 1838768400}
+  - component: {fileID: 1838768401}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -1441,6 +1510,18 @@ MonoBehaviour:
     _event:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1838768401}
+          m_TargetAssemblyTypeName: AudioComponent, Assembly-CSharp
+          m_MethodName: PlaySfxWithoutFade
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.5
+            m_StringArgument: default_lift
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 106965921}
           m_TargetAssemblyTypeName: ScreenShake, Assembly-CSharp
           m_MethodName: UpdateShakeForever
@@ -1539,6 +1620,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 5
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1838768401}
+          m_TargetAssemblyTypeName: AudioComponent, Assembly-CSharp
+          m_MethodName: PlaySfxWithoutFade
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: exploded_lift
             m_BoolArgument: 0
           m_CallState: 2
   - _startTime: 0.5
@@ -1641,7 +1734,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 1
+            m_FloatArgument: 2
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -1657,7 +1750,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 2
+            m_FloatArgument: 3
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -1673,7 +1766,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - _startTime: 5
+  - _startTime: 6
     _event:
       m_PersistentCalls:
         m_Calls:
@@ -1729,6 +1822,23 @@ MonoBehaviour:
             m_StringArgument: Open
             m_BoolArgument: 1
           m_CallState: 2
+--- !u!114 &1838768401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838768396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e201747c3cf9b924d8d3879b913eaf93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioComponent
+  _audio:
+  - id: default_lift
+    audio: {fileID: 8300000, guid: 0f0d87920f4530644b351c1b2379a236, type: 3}
+  - id: exploded_lift
+    audio: {fileID: 8300000, guid: 73c1d2a5371abbb479faa5baa0de7bbd, type: 3}
 --- !u!1 &1841739997
 GameObject:
   m_ObjectHideFlags: 0

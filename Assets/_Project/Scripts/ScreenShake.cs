@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class ScreenShake : MonoBehaviour
     public NoiseSettings[] _noises;
     public static ScreenShake Instance { get; private set; }
     private CinemachineBasicMultiChannelPerlin _cam;
+    private IntPersistentProperty _screenShake;
     private float _timer;
     private float _timerTotal;
     private float _startingIntensity;
@@ -15,6 +17,20 @@ public class ScreenShake : MonoBehaviour
         Instance = this;
         CinemachineCamera camera = GetComponent<CinemachineCamera>();
         _cam = (CinemachineBasicMultiChannelPerlin)camera.GetCinemachineComponent(CinemachineCore.Stage.Noise);
+    }
+    private void Start()
+    {
+        _screenShake = GameSettings.I._screenShake;
+        _screenShake.OnChanged += ShakeChanged;
+    }
+
+    private void ShakeChanged(int newValue, int oldValue)
+    {
+        if (newValue == 0)
+        {
+            _cam.AmplitudeGain = 0;
+            _isShaking = false;
+        }
     }
 
     public void ShakeCamera(float intensity, float timer)

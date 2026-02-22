@@ -19,7 +19,27 @@ public class AudioComponent : MonoBehaviour
             }
         }
     }
+    public void PlaySfxWithoutFade(string id)
+    {
+        foreach (var audio in _audio)
+        {
+            if (audio.id == id)
+            {
+                _musicManager.PlaySfx(audio.audio);
+            }
+        }
+    }
     public void Play(string id)
+    {
+        foreach (var audio in _audio)
+        {
+            if (audio.id == id)
+            {
+                _musicManager.Play(audio.audio);
+            }
+        }
+    }
+    public void PlayWithoutFade(string id)
     {
         foreach (var audio in _audio)
         {
