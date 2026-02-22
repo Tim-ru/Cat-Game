@@ -412,11 +412,15 @@ MonoBehaviour:
       _unfollowTargetDuringScene: 0
       _followingObject: {fileID: 690477783}
       _followingOffset: {x: 0, y: 0}
+    _unfollowTargetAllTime: 0
   _camera: {fileID: 387189253}
   _cameraPositionComposer: {fileID: 1592005948}
   _playerInput: {fileID: 436333586}
   _screenShake: {fileID: 387189252}
   _player: {fileID: 436333585}
+  _onCutsceneEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &435863845
 Transform:
   m_ObjectHideFlags: 0
@@ -1963,7 +1967,7 @@ GameObject:
   - component: {fileID: 1459318745}
   - component: {fileID: 1459318744}
   - component: {fileID: 1459318743}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
