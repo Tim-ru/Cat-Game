@@ -55,6 +55,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
+            Time.timeScale = 0;
             _playerInput.SwitchCurrentActionMap("UI");
             _canvas.SetActive(true);
         }

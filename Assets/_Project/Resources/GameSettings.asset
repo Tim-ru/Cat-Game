@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
   _master:
-    _value: 0.1
+    _value: 0.099999964
   _music:
-    _value: 1
+    _value: 0.34999985
   _sfx:
-    _value: 1
+    _value: 0.6499999
   _screenShake:
     _value: 1

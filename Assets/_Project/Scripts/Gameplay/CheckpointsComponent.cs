@@ -10,9 +10,9 @@ public class CheckpointsComponent : MonoBehaviour
     {
         _lastCheckpointPosition = _player.transform.position;
     }
-    public void UpdateCheckpoint(GameObject _collide, GameObject _checkpoint)
+    public void UpdateCheckpoint(Vector2 _spawnPosition)
     {
-        _lastCheckpointPosition = _checkpoint.transform.position;
+        _lastCheckpointPosition = _spawnPosition;
     }
 
     public void ReloadFromCheckpoint()
