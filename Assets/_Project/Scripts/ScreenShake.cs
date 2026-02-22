@@ -6,7 +6,6 @@ public class ScreenShake : MonoBehaviour
     public NoiseSettings[] _noises;
     public static ScreenShake Instance { get; private set; }
     private CinemachineBasicMultiChannelPerlin _cam;
-    private Coroutine _coroutine;
     private float _timer;
     private float _timerTotal;
     private float _startingIntensity;
@@ -20,6 +19,7 @@ public class ScreenShake : MonoBehaviour
 
     public void ShakeCamera(float intensity, float timer)
     {
+        if (GameSettings.I._screenShake.Value == 0) return;
         _startingIntensity = intensity;
         _cam.AmplitudeGain = intensity;
         _timer = timer;
@@ -29,19 +29,23 @@ public class ScreenShake : MonoBehaviour
     [ContextMenu("Shake")]
     public void Shake()
     {
+        if (GameSettings.I._screenShake.Value == 0) return;
         ShakeCamera(8, 1.5f);
     }
     [ContextMenu("Shake")]
     public void UpdateShakeForever(float intensity)
     {
+        if (GameSettings.I._screenShake.Value == 0) return;
         _cam.AmplitudeGain = intensity;
     }
     public void ChangeShakePreset(int typeIndex)
     {
+        if (GameSettings.I._screenShake.Value == 0) return;
         _cam.NoiseProfile = _noises[typeIndex];
     }
     public void RemoveShakeWithTime(float timer)
     {
+        if (GameSettings.I._screenShake.Value == 0) return;
         _startingIntensity = _cam.AmplitudeGain;
         _timer = timer;
         _timerTotal = timer;
