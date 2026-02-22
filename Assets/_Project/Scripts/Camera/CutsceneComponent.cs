@@ -62,10 +62,13 @@ public class CutsceneComponent : MonoBehaviour
     }
     public IEnumerator StartCutsceneItem(List<CutsceneActionsItem> _actions)
     {
-        currentCamSize = _camera.Lens.OrthographicSize;
-        currentCamPosition = _camera.transform.position;
-        targetCamPosition = currentCamPosition;
-        targetCamSize = currentCamSize;
+        if (_camera)
+        {
+            currentCamSize = _camera.Lens.OrthographicSize;
+            currentCamPosition = _camera.transform.position;
+            targetCamPosition = currentCamPosition;
+            targetCamSize = currentCamSize;
+        }
         _isPlaying = true;
         for (int i = 0; i < _actions.Count; ++i)
         {

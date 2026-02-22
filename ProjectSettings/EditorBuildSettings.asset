@@ -6,14 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/Scenes/SpawnRoom.unity
+    guid: 514135bfc960f4ca19d741b164be71db
+  - enabled: 1
     path: Assets/_Project/Scenes/Tower_Floor_01.unity
     guid: 9c1d8d533932e4e73b1eba9f0e55db58
   - enabled: 1
-    path: Assets/_Project/Scenes/Test.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/_Project/Scenes/LiftScene1.unity
+    guid: 1d5ae24615a847f40a97b315bc8457bc
   - enabled: 1
-    path: Assets/_Project/Scenes/Main.unity
-    guid: 7abf0ed5bd2884b23a755c9b2588d459
+    path: Assets/_Project/Scenes/Level1.5.unity
+    guid: 848409b418f1f9648ae53a940268ef19
+  - enabled: 1
+    path: Assets/_Project/Scenes/Level2.unity
+    guid: 7d2c567c89c4acd458d373a80dc9fee6
+  - enabled: 1
+    path: Assets/_Project/Scenes/LiftScene2.unity
+    guid: 91cebbd3210c0494893b938f0840e1d7
+  - enabled: 1
+    path: Assets/_Project/Scenes/FinalScene.unity
+    guid: 27241d108a13306488295078e6a9c709
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 81918841ce9924a18b6b953eea97298d, type: 2}
   m_UseUCBPForAssetBundles: 0

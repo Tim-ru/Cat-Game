@@ -51,6 +51,10 @@ public class AudioComponent : MonoBehaviour
     }
     public void StopCurrentAudio()
     {
+        _musicManager.StopCurrent();
+    }
+    public void StopCurrentSfx()
+    {
         _musicManager.StopCurrentSfx();
     }
 

@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int isSprintingParam = Animator.StringToHash("isSprinting");
     private static readonly int isChaseParam = Animator.StringToHash("isChase");
     private static readonly int strongJumpParam = Animator.StringToHash("StrongJump");
+    private static readonly int isSitting = Animator.StringToHash("IsSitting");
 
     private readonly float strongJumpHoldAtNormalizedTime = 0.7f;
 
@@ -231,7 +232,7 @@ public class PlayerController : MonoBehaviour
             if (!_isAbleToStandUp) return;
         }
         isCrouching = crouch;
-
+        animator.SetBool(isSitting, crouch);
         if (spriteRenderer != null)
         {
             Sprite newSprite = crouch ? crouchSprite : idleSprite;
