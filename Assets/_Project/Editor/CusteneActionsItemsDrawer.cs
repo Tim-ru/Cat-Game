@@ -55,6 +55,12 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
             case Actions.JumpPlayer:
                 DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
                 break;
+
+            case Actions.FollowNewObject:
+                DrawProperty(ref rect, property.FindPropertyRelative("_duration"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_pauseTime"));
+                DrawProperty(ref rect, property.FindPropertyRelative("_followingObject"));
+                break;
         }
 
         EditorGUI.EndProperty();
@@ -115,6 +121,12 @@ public class CusteneActionsItemsDrawer : PropertyDrawer
 
             case Actions.JumpPlayer:
                 totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
+                break;
+
+            case Actions.FollowNewObject:
+                totalHeight += GetHeight(property.FindPropertyRelative("_pauseTime"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_duration"));
+                totalHeight += GetHeight(property.FindPropertyRelative("_followingObject"));
                 break;
         }
 

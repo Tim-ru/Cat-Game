@@ -25,6 +25,8 @@ public class CutsceneComponent : MonoBehaviour
     private float _resizeTime;
     private float _AllResizeTime;
     private float _playerMoveTime;
+    private float _followingTime;
+    private float _AllfollowingTime;
     private bool _isPlaying = false;
 
     [ContextMenu("Play")]
@@ -58,6 +60,7 @@ public class CutsceneComponent : MonoBehaviour
                     yield return new WaitForSeconds(_actions[i]._pauseTime);
                     if (currentCamPosition != targetCamPosition)
                         yield return new WaitForSeconds(_movementTime);
+                    _camera.Follow = null;
                     targetCamPosition = _actions[i]._targetCameraPosition;
                     _movementTime = _actions[i]._duration;
                     _AllMovementTime = _movementTime;
@@ -88,6 +91,10 @@ public class CutsceneComponent : MonoBehaviour
                     yield return new WaitForSeconds(_actions[i]._pauseTime);
                     _player.OnJumpPressed();
                     break;
+                case Actions.FollowNewObject:
+                    yield return new WaitForSeconds(_actions[i]._pauseTime);
+                    yield return new WaitForSeconds(_actions[i]._duration);
+                    break;
             }
         }
         var maxTime = Math.Max(_movementTime, _resizeTime);
@@ -104,6 +111,7 @@ public class CutsceneComponent : MonoBehaviour
             _movementTime -= Time.deltaTime;
             if (_movementTime <= 0)
             {
+                _camera.Follow = _player.transform;
                 currentCamPosition = targetCamPosition;
                 _camera.transform.position = targetCamPosition;
             }
@@ -148,6 +156,7 @@ public class CutsceneActionsItem
     public float _targetCameraSize;
     public float _shakeStrength;
     public bool _unfollowTargetDuringScene;
+    public Transform _followingObject;
 }
 
 [Serializable]
@@ -158,5 +167,6 @@ public enum Actions
     ShakeCamera,
     MovePlayer,
     AddVelocityToPlayer,
-    JumpPlayer
+    JumpPlayer,
+    FollowNewObject
 }
