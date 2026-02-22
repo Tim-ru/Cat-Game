@@ -30,6 +30,7 @@ public class MenuNavigationComponent : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1;
             _windows[_windowsIndexesList[0]].ResetHighlight();
             _playerInput.SwitchCurrentActionMap("Gameplay");
             gameObject.SetActive(false);

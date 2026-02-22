@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,21 +8,24 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] private AudioSource melodySource;
     [SerializeField] private AudioSource percussionSource;
+    [SerializeField] private AudioSource sfxSource;
     [SerializeField] private float fadeTime = 1.5f;
     [SerializeField] private float chaseLayerFadeTime = 0.8f;
     private float percussionVolume;
     private float melodyVolume;
+    private float sfxVolume;
     private float targetPercussionVolume;
     private Coroutine currentFade;
     private bool _isVolumeChanging = false;
-    private float maxMelodyVolume;
+    private float maxVolume;
+    private float maxSfxVolume;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         Instance = this;
-        maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
-        melodyVolume = maxMelodyVolume;
+        maxVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
+        melodyVolume = maxVolume;
         percussionVolume = 0f;
         targetPercussionVolume = percussionVolume;
     }
@@ -32,15 +36,16 @@ public class MusicManager : MonoBehaviour
         {
             if (melodySource != null) melodySource.volume = melodyVolume;
             if (percussionSource != null) percussionSource.volume = percussionVolume;
+            if (sfxSource != null) sfxSource.volume = sfxVolume;
         }
     }
     public void SetChaseLayer(bool on)
     {
-        maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
+        maxVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
         targetPercussionVolume = on ? 1f : 0f;
-        targetPercussionVolume = targetPercussionVolume > maxMelodyVolume ? maxMelodyVolume : targetPercussionVolume;
+        targetPercussionVolume = targetPercussionVolume > maxVolume ? maxVolume : targetPercussionVolume;
         if (currentFade != null) StopCoroutine(currentFade);
-        currentFade = StartCoroutine(LerpVolumes(melodyVolume, melodyVolume, percussionVolume, targetPercussionVolume, chaseLayerFadeTime));
+        currentFade = StartCoroutine(LerpVolumes(melodyVolume, melodyVolume, percussionVolume, targetPercussionVolume, sfxVolume, sfxVolume, chaseLayerFadeTime));
     }
 
     public void CrossfadeTo(AudioClip melody, AudioClip percussion, float duration = -1f)
@@ -65,12 +70,25 @@ public class MusicManager : MonoBehaviour
         melodyVolume = 0f;
         percussionVolume = 0f;
         if (currentFade != null) StopCoroutine(currentFade);
-        maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
-        currentFade = StartCoroutine(LerpVolumes(0f, maxMelodyVolume, 0f, targetPercussionVolume, Mathf.Max(0.1f, fadeTime)));
+        maxVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
+        currentFade = StartCoroutine(LerpVolumes(0f, maxVolume, 0f, targetPercussionVolume, sfxVolume, sfxVolume, Mathf.Max(0.1f, fadeTime)));
+    }
+
+    public void PlaySfx(AudioClip melody)
+    {
+        if (sfxSource != null && melody != null)
+        {
+            sfxSource.clip = melody;
+            sfxSource.Play();
+        }
+        sfxVolume = 0f;
+        if (currentFade != null) StopCoroutine(currentFade);
+        maxSfxVolume = GameSettings.I.Sfx.Value * GameSettings.I.Master.Value;
+        currentFade = StartCoroutine(LerpVolumes(melodyVolume, melodyVolume, percussionVolume, percussionVolume, 0f, maxSfxVolume, Mathf.Max(0.1f, fadeTime)));
     }
 
     // Плавно меняем громкости за time
-    private IEnumerator LerpVolumes(float fromMelody, float toMelody, float fromPerc, float toPerc, float time, bool isMainFade = true)
+    private IEnumerator LerpVolumes(float fromMelody, float toMelody, float fromPerc, float toPerc, float fromSfx, float toSfx, float time, bool isMainFade = true)
     {
         _isVolumeChanging = true;
         float t = 0f;
@@ -80,10 +98,12 @@ public class MusicManager : MonoBehaviour
             float k = t / time;
             melodyVolume = Mathf.Lerp(fromMelody, toMelody, k);
             percussionVolume = Mathf.Lerp(fromPerc, toPerc, k);
+            sfxVolume = Mathf.Lerp(fromSfx, toSfx, k);
             yield return null;
         }
         melodyVolume = toMelody;
         percussionVolume = toPerc;
+        sfxVolume = toSfx;
         yield return null;
         _isVolumeChanging = false;
         if (isMainFade) currentFade = null;
@@ -92,7 +112,7 @@ public class MusicManager : MonoBehaviour
     private IEnumerator CrossfadeRoutine(AudioClip melody, AudioClip percussion, float duration)
     {
         // 1. Плавно убавить текущую музыку до нуля
-        yield return StartCoroutine(LerpVolumes(melodyVolume, 0f, percussionVolume, 0f, duration, isMainFade: false));
+        yield return StartCoroutine(LerpVolumes(melodyVolume, 0f, percussionVolume, 0f, sfxVolume, sfxVolume, duration, isMainFade: false));
 
         melodyVolume = 0f;
         percussionVolume = 0f;
@@ -110,11 +130,16 @@ public class MusicManager : MonoBehaviour
         }
 
         // 3. Плавно прибавить волюма
-        maxMelodyVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
-        yield return StartCoroutine(LerpVolumes(0f, maxMelodyVolume, 0f, targetPercussionVolume, duration, isMainFade: false));
+        maxVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
+        yield return StartCoroutine(LerpVolumes(0f, maxVolume, 0f, targetPercussionVolume, sfxVolume, sfxVolume, duration, isMainFade: false));
 
-        melodyVolume = maxMelodyVolume;
+        melodyVolume = maxVolume;
         percussionVolume = targetPercussionVolume;
         currentFade = null;
+    }
+
+    public void StopCurrentSfx()
+    {
+        sfxSource.Stop();
     }
 }

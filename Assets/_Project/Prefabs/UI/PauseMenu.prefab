@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 424691112375512436}
   - component: {fileID: 7932244086025044045}
   - component: {fileID: 613216585411091093}
+  - component: {fileID: 5347923913717204273}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -481,6 +482,19 @@ MonoBehaviour:
   _slider: {fileID: 6697747674255338763}
   _backgroundImage: {fileID: 8685001249730619138}
   _valueStep: 0.05
+--- !u!114 &5347923913717204273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305342474644938431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7732b45998e2d0e4ca8e857a8b5eb194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsWidget
+  _slider: {fileID: 6697747674255338763}
 --- !u!1 &1321761253448286907
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +679,7 @@ GameObject:
   - component: {fileID: 1345692568745392041}
   - component: {fileID: 6416489948827204534}
   - component: {fileID: 4363741949403629289}
+  - component: {fileID: 4574952293607214063}
   m_Layer: 5
   m_Name: MusicSlider
   m_TagString: Untagged
@@ -806,6 +821,19 @@ MonoBehaviour:
   _slider: {fileID: 9013133732598287202}
   _backgroundImage: {fileID: 4058041636489721111}
   _valueStep: 0.05
+--- !u!114 &4574952293607214063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457961761850950762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7732b45998e2d0e4ca8e857a8b5eb194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsWidget
+  _slider: {fileID: 9013133732598287202}
 --- !u!1 &2968561424472236225
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +997,7 @@ GameObject:
   - component: {fileID: 2073370237873372494}
   - component: {fileID: 6850477530943185401}
   - component: {fileID: 8212994091062041760}
+  - component: {fileID: 6250530091733443025}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -1108,7 +1137,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MenuButton
   _onClickEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6250530091733443025}
+        m_TargetAssemblyTypeName: LoadSceneComponent, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6250530091733443025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323700370191102033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1ca700814e2434297dd44042ca7ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadSceneComponent
 --- !u!1 &3357309397624347057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4594768521526428281}
   - component: {fileID: 525596905220427980}
+  - component: {fileID: 8147903012552807834}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -1242,6 +1296,22 @@ MonoBehaviour:
   - {fileID: 4363741949403629289}
   - {fileID: 613216585411091093}
   - {fileID: 2319866103890226843}
+--- !u!114 &8147903012552807834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403807139261860976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0b708e25c47cf4fa95a5f09dfb855b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _master: {fileID: 8345637624615205233}
+  _music: {fileID: 4574952293607214063}
+  _sfx: {fileID: 5347923913717204273}
+  _screenShake: {fileID: 6787286609198038895}
 --- !u!1 &3408944586499142780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8324915018496331398}
   - component: {fileID: 4186584299376228}
+  - component: {fileID: 6787286609198038895}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -1483,6 +1554,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &6787286609198038895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198625584778583782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fc687215ce20044a534823a68a923d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShakeToggle
 --- !u!1 &4509277622309033754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,6 +2985,7 @@ GameObject:
   - component: {fileID: 6213402986764484085}
   - component: {fileID: 8457047953959362050}
   - component: {fileID: 938451510205777389}
+  - component: {fileID: 8345637624615205233}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -3043,6 +3127,19 @@ MonoBehaviour:
   _slider: {fileID: 1810813889154954518}
   _backgroundImage: {fileID: 3125580683058311592}
   _valueStep: 0.05
+--- !u!114 &8345637624615205233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8409036631929813058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7732b45998e2d0e4ca8e857a8b5eb194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsWidget
+  _slider: {fileID: 1810813889154954518}
 --- !u!1 &8795426792477685150
 GameObject:
   m_ObjectHideFlags: 0

@@ -1939,7 +1939,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 743e1466b1cfa4804839a455ec760c71, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105852,6 +105852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
   melodySource: {fileID: 771045458}
   percussionSource: {fileID: 2107770906}
+  sfxSource: {fileID: 0}
   fadeTime: 1.5
   chaseLayerFadeTime: 0.8
 --- !u!1 &1578577169
@@ -107238,7 +107239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5734332906172242582, guid: 245cdd61a54099f4bb3758372dbd920d, type: 3}
       propertyPath: orthographic size
-      value: 6.03125
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 6693867073216506682, guid: 245cdd61a54099f4bb3758372dbd920d, type: 3}
       propertyPath: m_Name
