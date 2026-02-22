@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
+    public NoiseSettings[] _noises;
     public static ScreenShake Instance { get; private set; }
     private CinemachineBasicMultiChannelPerlin _cam;
     private Coroutine _coroutine;
@@ -28,7 +29,23 @@ public class ScreenShake : MonoBehaviour
     [ContextMenu("Shake")]
     public void Shake()
     {
-        ShakeCamera(10, 5);
+        ShakeCamera(8, 1.5f);
+    }
+    [ContextMenu("Shake")]
+    public void UpdateShakeForever(float intensity)
+    {
+        _cam.AmplitudeGain = intensity;
+    }
+    public void ChangeShakePreset(int typeIndex)
+    {
+        _cam.NoiseProfile = _noises[typeIndex];
+    }
+    public void RemoveShakeWithTime(float timer)
+    {
+        _startingIntensity = _cam.AmplitudeGain;
+        _timer = timer;
+        _timerTotal = timer;
+        _isShaking = true;
     }
     public void Update()
     {

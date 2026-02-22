@@ -49,5 +49,8 @@ TagManager:
   - name: Fade
     uniqueID: 3335676467
     locked: 0
+  - name: Door
+    uniqueID: 880977877
+    locked: 0
   m_RenderingLayers:
   - Default
