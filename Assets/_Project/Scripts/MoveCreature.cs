@@ -8,4 +8,10 @@ public class MoveCreature : MonoBehaviour
     {
         rb.linearVelocityX = -maxSpeed;
     }
+
+    public void Teleport(Vector2 newPos)
+    {
+        transform.position = newPos;
+        maxSpeed = 13f;
+    }
 }

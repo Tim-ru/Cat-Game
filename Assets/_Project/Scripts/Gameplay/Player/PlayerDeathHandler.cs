@@ -40,11 +40,12 @@ public class PlayerDeathHandler : MonoBehaviour
 
     private IEnumerator DeathRoutine()
     {
-        yield return new WaitForSeconds(fadeDuration);
         if (checkpoints != null)
             checkpoints.ReloadFromCheckpoint();
         else if (respawnPoint != null)
             transform.position = respawnPoint.position;
+        yield return new WaitForSeconds(fadeDuration);
+        fadeAnimator.SetTrigger("Unfade");
         if (rb != null) rb.linearVelocity = Vector2.zero;
         isDead = false;
         if (playerController != null) playerController.enabled = true;

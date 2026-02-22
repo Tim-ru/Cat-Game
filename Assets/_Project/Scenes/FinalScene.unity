@@ -342,7 +342,7 @@ Transform:
   m_GameObject: {fileID: 494459388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1071672, y: 1.2452949, z: 0}
+  m_LocalPosition: {x: -5.118847, y: 1.2486272, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -424,7 +424,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 556998905}
           m_TargetAssemblyTypeName: AudioComponent, Assembly-CSharp
-          m_MethodName: PlaySfx
+          m_MethodName: PlaySfxWithoutFade
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -466,6 +466,55 @@ MonoBehaviour:
     audio: {fileID: 8300000, guid: 646c3d5beee55b94bab711b24ff983b1, type: 3}
   - id: wind
     audio: {fileID: 8300000, guid: 43f3ae1e9c9d6024cba9fe5e2ac007be, type: 3}
+--- !u!1 &581103883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 581103885}
+  - component: {fileID: 581103884}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &581103884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581103883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 4bd44f73adcc6044888f252ff2c01560, type: 2}
+--- !u!4 &581103885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581103883}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.592193, y: -0.5225722, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &894054642 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7008356517238547482, guid: 6de9ef16c82e08b44b24151fa2847da4, type: 3}
@@ -1700,3 +1749,4 @@ SceneRoots:
   - {fileID: 922916939}
   - {fileID: 494459390}
   - {fileID: 1262066378}
+  - {fileID: 581103885}

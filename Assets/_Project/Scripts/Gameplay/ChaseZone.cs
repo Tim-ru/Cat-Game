@@ -10,9 +10,10 @@ public class ChaseZone : MonoBehaviour
 
         if (other.TryGetComponent(out PlayerController player))
             player.SetChase(true);
-
+        /*
         if (MusicManager.Instance != null)
             MusicManager.Instance.SetChaseLayer(true);
+        */
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -21,8 +22,9 @@ public class ChaseZone : MonoBehaviour
 
         if (other.TryGetComponent(out PlayerController player))
             player.SetChase(false);
-
+        /*
         if (MusicManager.Instance != null)
             MusicManager.Instance.SetChaseLayer(false);
+        */
     }
 }

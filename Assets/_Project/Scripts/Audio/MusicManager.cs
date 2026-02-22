@@ -39,6 +39,7 @@ public class MusicManager : MonoBehaviour
             if (sfxSource != null) sfxSource.volume = sfxVolume;
         }
     }
+    /*
     public void SetChaseLayer(bool on)
     {
         maxVolume = GameSettings.I.Music.Value * GameSettings.I.Master.Value;
@@ -47,6 +48,7 @@ public class MusicManager : MonoBehaviour
         if (currentFade != null) StopCoroutine(currentFade);
         currentFade = StartCoroutine(LerpVolumes(melodyVolume, melodyVolume, percussionVolume, targetPercussionVolume, sfxVolume, sfxVolume, chaseLayerFadeTime));
     }
+    */
 
     public void CrossfadeTo(AudioClip melody, AudioClip percussion, float duration = -1f)
     {
@@ -161,13 +163,13 @@ public class MusicManager : MonoBehaviour
 
     public void StopCurrentSfx()
     {
-        sfxSource.Stop();
+        sfxSource.clip = null;
     }
 
     public void StopCurrent()
     {
-        percussionSource.Stop();
-        melodySource.Stop();
+        percussionSource.clip = null;
+        melodySource.clip = null;
     }
 
     public void ChangeLoopSfx()
